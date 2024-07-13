@@ -1,32 +1,26 @@
-import { Link, Stack } from 'expo-router';
-import { StyleSheet } from 'react-native';
-
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import ParallaxScrollView from "@/components/parallax";
+import { CustomText } from "@/components/text";
+import { Routes } from "@/routes/routes";
+import { Link, Stack } from "expo-router";
+import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function NotFoundScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">This screen doesn't exist.</ThemedText>
-        <Link href="/" style={styles.link}>
-          <ThemedText type="link">Go to home screen!</ThemedText>
-        </Link>
-      </ThemedView>
+      <Stack.Screen options={{ title: "Oops!" }} />
+      <ParallaxScrollView>
+        <SafeAreaView>
+          <View className="h-screen justify-center items-center font-bold">
+            <CustomText>This screen doesn't exist.</CustomText>
+            <Link href={Routes.login}>
+              <CustomText fontFamily="PoppinsBold">
+                Go to login screen!
+              </CustomText>
+            </Link>
+          </View>
+        </SafeAreaView>
+      </ParallaxScrollView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-});
