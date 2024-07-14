@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import classNames from "classnames";
 import { ErrorMessage } from "formik";
 import React, { useState } from "react";
 import {
@@ -15,12 +16,14 @@ type ICustomProps = TextInputProps & {
   isPassword?: boolean;
   arialLabel?: string;
   arialLabelBy?: string;
+  customClassName?: string;
 };
 const CustomInput = ({
   name,
   isPassword,
   arialLabel,
   arialLabelBy,
+  customClassName,
   ...rest
 }: ICustomProps) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +45,10 @@ const CustomInput = ({
         aria-label={name}
         aria-labelledby={arialLabelBy ?? ""}
         {...rest}
-        className="border-[1px] border-textColor rounded-2xl px-5 h-[54px] focus:border-primary"
+        className={classNames(
+          "border-[1px] border-textColor rounded-2xl px-5 h-[54px] focus:border-primary",
+          customClassName
+        )}
         style={{ fontFamily: "PoppinsMedium" }}
         secureTextEntry={!showPassword}
         placeholderTextColor="#CACACA"

@@ -15,7 +15,7 @@ const CustomPressable = ({
     <Pressable
       {...rest}
       className={classNames(
-        "bg-primary rounded-2xl py-4 items-center justify-center",
+        "bg-primary rounded-2xl py-4 items-center justify-center w-full",
         customClassName
       )}
       disabled={disabled}

@@ -3,4 +3,6 @@ export const enum Routes {
   login = "/login",
   register = "/register",
   forgotPassword = "/forgot_password",
+  changePassword = "/change_password",
+  password_success = "",
 }

@@ -7,17 +7,24 @@ type ICustomButtonProps = {
   isLoading?: boolean;
   buttonText: string;
   disabled?: boolean;
+  customClassName?: string;
   onPress?: () => void;
 };
 const CustomButton = ({
   isLoading,
   buttonText,
   disabled,
+  customClassName,
   onPress,
   ...rest
 }: ICustomButtonProps) => {
   return (
-    <CustomPressable disabled={disabled} {...rest} onPress={onPress}>
+    <CustomPressable
+      disabled={disabled}
+      {...rest}
+      onPress={onPress}
+      customClassName={customClassName}
+    >
       {isLoading ? (
         <Flow color="white" size={50} />
       ) : (
