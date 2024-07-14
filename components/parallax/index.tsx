@@ -8,7 +8,7 @@ export default function ParallaxScrollView({ children }: Props) {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
 
   return (
-    <View>
+    <View className="bg-white flex-1 h-screen">
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <View>{children}</View>
       </Animated.ScrollView>
