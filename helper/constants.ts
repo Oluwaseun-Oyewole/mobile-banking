@@ -1,8 +1,4 @@
-type AuthScreensTitle = {
-  [key: string]: string;
-};
-
-export const AuthScreensTitle: AuthScreensTitle = {
+export const AuthScreensTitle: Record<string, string> = {
   login: "Sign in",
   register: "Sign up",
   forgot_password: "Forgot password",
