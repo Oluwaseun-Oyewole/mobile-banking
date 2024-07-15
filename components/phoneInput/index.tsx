@@ -1,6 +1,6 @@
 import FormError from "@/components/input/input.form.error";
 import { CustomText } from "@/components/text";
-import { ErrorMessage } from "formik";
+import { ErrorMessage, FormikProps } from "formik";
 import parsePhoneNumberFromString from "libphonenumber-js";
 import React, { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
@@ -10,7 +10,7 @@ import CountryPicker, {
 } from "react-native-country-picker-modal";
 import PhoneInput from "react-phone-number-input/react-native-input";
 
-const CustomPhoneNumber = ({ formik }: any) => {
+const CustomPhoneNumber = ({ formik }: { formik: FormikProps<any> }) => {
   const [phoneCountryCode, setPhoneCountryCode] = useState<CountryCode | any>(
     "NG"
   );
@@ -62,15 +62,13 @@ const CustomPhoneNumber = ({ formik }: any) => {
           >{`(+${callingCodes})`}</CustomText>
           <PhoneInput
             // ref={phoneInputRef}
-            // defaultCountry={phoneCountryCode}
+            defaultCountry={phoneCountryCode}
             value={formik.values.phone}
             onChangePhoneNumber={(value: string) =>
               formik.setFieldValue("phone", value)
             }
             name="phone"
-            onChange={(value) => {
-              formik.setFieldValue("phone", value);
-            }}
+            onChange={(value) => formik.setFieldValue("phone", value)}
             style={{
               fontFamily: "PoppinsMedium",
               width: "75%",
@@ -83,8 +81,13 @@ const CustomPhoneNumber = ({ formik }: any) => {
       </View>
 
       <>
-        {validatePhoneNumber(formik.values.phone, phoneCountryCode) ===
-          true && <FormError error="Invalid Phone Input" />}
+        {formik.values.phone && (
+          <>
+            {!validatePhoneNumber(formik.values.phone, phoneCountryCode) && (
+              <FormError error="Invalid Phone Input" />
+            )}
+          </>
+        )}
       </>
 
       <ErrorMessage name="phone">

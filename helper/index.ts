@@ -1,4 +1,5 @@
 export function renderRouteBoolean(pathname: string) {
-  if (pathname === "/login" || pathname === "/register") return true;
+  if (pathname === "/login" || pathname === "/register" || pathname === "/")
+    return true;
   return false;
 }

@@ -10,6 +10,8 @@ type InitialStatesType = {
   session: string | null;
   currentUser: boolean;
   updateCurrentUser: () => void;
+  isPhoneValid?: boolean;
+  updateIsPhoneValidity: VoidFunction;
 };
 
 const initialValues: InitialStatesType = {
@@ -19,6 +21,8 @@ const initialValues: InitialStatesType = {
   session: null,
   currentUser: false,
   updateCurrentUser: () => {},
+  isPhoneValid: false,
+  updateIsPhoneValidity: () => {},
 };
 
 export const AuthContext = createContext<InitialStatesType>(initialValues);
@@ -26,9 +30,14 @@ export const AuthContext = createContext<InitialStatesType>(initialValues);
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [[isLoading, session], setSession] = useStorageState("session");
   const [currentUser, setCurrentUser] = useState(false);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
 
   function updateCurrentUser() {
-    setCurrentUser(!currentUser);
+    setCurrentUser(true);
+  }
+
+  function updateIsPhoneValidity() {
+    setIsPhoneValid(true);
   }
 
   return (
@@ -44,6 +53,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         session,
         currentUser,
         updateCurrentUser,
+        isPhoneValid,
+        updateIsPhoneValidity,
       }}
     >
       {children}

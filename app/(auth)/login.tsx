@@ -5,6 +5,7 @@ import CustomButton from "@/components/button";
 import CustomInput from "@/components/input";
 import CustomPhoneNumber from "@/components/phoneInput";
 import { CustomText } from "@/components/text";
+import { useSession } from "@/hooks/useSession";
 import { Routes } from "@/routes/routes";
 import { Image } from "expo-image";
 import * as LocalAuthentication from "expo-local-authentication";
@@ -17,6 +18,7 @@ import * as Yup from "yup";
 const Login = () => {
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const { push } = useRouter();
+  const { updateCurrentUser } = useSession();
 
   useEffect(() => {
     (async () => {
@@ -36,8 +38,9 @@ const Login = () => {
   });
 
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
-    push(Routes.Home);
     resetForm({});
+    push(Routes.Home);
+    updateCurrentUser();
   };
 
   const handleBiometricAuth = async () => {
@@ -90,7 +93,7 @@ const Login = () => {
                 <View className="mt-4">
                   <CustomInput
                     id="password"
-                    placeholder="Testing123@"
+                    placeholder="*****"
                     name="password"
                     keyboardType="visible-password"
                     onChangeText={formik.handleChange("password")}
