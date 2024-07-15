@@ -29,6 +29,7 @@ export default function RootLayout() {
     <AuthProvider>
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(app)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
     </AuthProvider>

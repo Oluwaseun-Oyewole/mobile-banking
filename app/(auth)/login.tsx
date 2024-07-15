@@ -8,7 +8,7 @@ import { CustomText } from "@/components/text";
 import { Routes } from "@/routes/routes";
 import { Image } from "expo-image";
 import * as LocalAuthentication from "expo-local-authentication";
-import { Link, usePathname, useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { Alert, View } from "react-native";
@@ -16,8 +16,7 @@ import * as Yup from "yup";
 
 const Login = () => {
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
+  const { push } = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -37,7 +36,7 @@ const Login = () => {
   });
 
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
-    console.log("values", values);
+    push(Routes.Home);
     resetForm({});
   };
 
@@ -58,7 +57,7 @@ const Login = () => {
     });
 
     if (biometricAuth.success) {
-      router.push(Routes.Home);
+      push(Routes.Home);
     } else {
       Alert.alert("Authentication failed", "Please try again.", [
         { text: "OK" },
@@ -68,7 +67,7 @@ const Login = () => {
 
   return (
     <AuthWrapper>
-      <>
+      <View className="flex-1 h-full">
         <AuthGreeting
           heading="Welcome Back"
           body="Hello there, sign in to continue"
@@ -88,7 +87,7 @@ const Login = () => {
             return (
               <>
                 <CustomPhoneNumber formik={formik} />
-                <View className="mt-5">
+                <View className="mt-4">
                   <CustomInput
                     id="password"
                     placeholder="Testing123@"
@@ -124,28 +123,33 @@ const Login = () => {
             );
           }}
         </Formik>
-        {isBiometricSupported ? (
-          <View className="items-center justify-center my-8">
-            <Image
-              className="h-[70px] w-[70px]"
-              placeholder="illustration icon"
-              contentFit="cover"
-              transition={1000}
-              source={require("@/assets/images/Fingerprint.svg")}
-              onTouchStart={handleBiometricAuth}
-            />
-          </View>
-        ) : (
-          <CustomText>
-            Biometric authentication is not supported on this device.
-          </CustomText>
-        )}
+        <View className="h-[130px] items-center justify-center ">
+          {isBiometricSupported ? (
+            <View className="h-[75px]">
+              <Image
+                className="h-full w-[75px]"
+                placeholder="illustration icon"
+                contentFit="cover"
+                transition={1000}
+                source={require("@/assets/images/Fingerprint.svg")}
+                onTouchStart={handleBiometricAuth}
+              />
+            </View>
+          ) : (
+            <CustomText
+              customClassName="pt-10 text-sm"
+              fontFamily="PoppinsMedium"
+            >
+              Biometric authentication is not supported on this device.
+            </CustomText>
+          )}
+        </View>
         <Account
           text="Don't have an account ?"
           linkText="Sign Up"
           url={Routes.register}
         />
-      </>
+      </View>
     </AuthWrapper>
   );
 };

@@ -7,6 +7,7 @@ import CustomPhoneNumber from "@/components/phoneInput";
 import { CustomText } from "@/components/text";
 import { Routes } from "@/routes/routes";
 import Checkbox from "expo-checkbox";
+import { useRouter } from "expo-router";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { View } from "react-native";
@@ -14,7 +15,7 @@ import * as Yup from "yup";
 
 const Registration = () => {
   const [isChecked, setChecked] = useState(false);
-
+  const { push } = useRouter();
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("Name Required")
@@ -29,7 +30,7 @@ const Registration = () => {
   });
 
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
-    console.log("values", values);
+    push(Routes.login);
     resetForm({});
   };
 
@@ -63,28 +64,29 @@ const Registration = () => {
                 arialLabel="Label for name"
                 arialLabelBy="Name"
               />
-              <CustomPhoneNumber formik={formik} />
-              <View className="mt-3">
-                <CustomInput
-                  id="password"
-                  placeholder="Testing123@"
-                  name="password"
-                  keyboardType="visible-password"
-                  onChangeText={formik.handleChange("password")}
-                  onBlur={formik.handleBlur("password")}
-                  value={formik.values.password}
-                  arialLabelBy="Password"
-                  arialLabel="Label for Password"
-                  isPassword
-                  autoComplete="off"
-                  inputMode="text"
-                />
+              <View className="py-4">
+                <CustomPhoneNumber formik={formik} />
               </View>
 
-              <View className="py-5 flex-row items-start gap-2">
+              <CustomInput
+                id="password"
+                placeholder="Testing123@"
+                name="password"
+                keyboardType="visible-password"
+                onChangeText={formik.handleChange("password")}
+                onBlur={formik.handleBlur("password")}
+                value={formik.values.password}
+                arialLabelBy="Password"
+                arialLabel="Label for Password"
+                isPassword
+                autoComplete="off"
+                inputMode="text"
+              />
+
+              <View className="py-7 flex-row items-start gap-2">
                 <View>
                   <Checkbox
-                    className="mt-[4px] font-light"
+                    className="mt-[4px] font-light border-red-500 border-2"
                     value={isChecked}
                     onValueChange={setChecked}
                     color={isChecked ? "#3629B7" : "#CACACA"}

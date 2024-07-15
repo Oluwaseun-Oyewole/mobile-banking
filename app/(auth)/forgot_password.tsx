@@ -41,7 +41,7 @@ const ForgotPassword = () => {
   if (currentStep === 2) {
     return (
       <AuthWrapper>
-        <View className="h-full">
+        <View className="flex-1 bg-red-500">
           <CustomText
             customClassName="text-[#979797] pb-3"
             fontFamily="PoppinsMedium"
@@ -115,7 +115,7 @@ const ForgotPassword = () => {
 
   return (
     <AuthWrapper>
-      <View className="shadow-fuchsia-900 border-gray-500 border-1 justify-center h-[40vh]">
+      <View className="flex-1 px-3 justify-center h-[40vh] shadow-xll">
         <CustomText customClassName="text-[#979797]" fontFamily="PoppinsMedium">
           Text your phone number
         </CustomText>

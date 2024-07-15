@@ -17,9 +17,9 @@ const AuthGreeting = ({ heading, body, imagePath }: IAuthGreeting) => {
       <CustomText fontFamily="PoppinsMedium" customClassName="pt-1">
         {body}
       </CustomText>
-      <View className="w-full items-center justify-center my-10">
+      <View className="items-center justify-center my-10 h-[150px]">
         <Image
-          className="h-[150px] w-[195px]"
+          className="w-[150px] h-full"
           placeholder="illustration icon"
           contentFit="cover"
           transition={1000}
