@@ -25,7 +25,7 @@ const AuthWrapper = ({ children }: PropsWithChildren) => {
         <View
           className={`${
             renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "#fff"
-          } h-[100px] w-full justify-center pt-7 px-8`}
+          } h-[100px] w-full justify-center pt-11 px-8`}
         >
           <View className="items-center flex-row">
             <TouchableOpacity onPress={() => router.back()}>

@@ -5,46 +5,29 @@ import { CustomText } from "@/components/text";
 import { Routes } from "@/routes/routes";
 import { useRouter } from "expo-router";
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import { View } from "react-native";
 import * as Yup from "yup";
 
 const ChangePassword = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const validationSchema = Yup.object({
-    phone: Yup.string().required("Phone number is required"),
-  });
-
   const { push } = useRouter();
-
-  const stepTwoValidationSchema = Yup.object({
-    code: Yup.string()
-      .required("Phone number is required")
-      .min(6, "Code must be 4 characters"),
+  const validationSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(6, "Password should contain more than 6 characters")
+      .required("Please provide a password"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .required("Confirm password is required"),
   });
 
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
     push(Routes.password_success);
-    setCurrentStep(2);
     resetForm({});
   };
 
-  // const schema = Yup.object().shape({
-  //   otp: Yup.string()
-  //     .required("OTP is required")
-  //     .min(6, "OTP must be 6 digits"),
-  //   password: Yup.string()
-  //     .min(6, "Password should contain more than 6 characters")
-  //     .required("Please provide a password"),
-  //   confirmPassword: Yup.string()
-  //     .oneOf([Yup.ref("password")], "Passwords must match")
-  //     .required("Confirm password is required"),
-  // });
-
   return (
     <AuthWrapper>
-      <View className="h-full">
+      <View className="h-full pt-10">
         <CustomText
           customClassName="text-[#979797] pb-3"
           fontFamily="PoppinsMedium"
@@ -54,9 +37,10 @@ const ChangePassword = () => {
 
         <Formik
           initialValues={{
-            code: "",
+            password: "",
+            confirmPassword: "",
           }}
-          validationSchema={stepTwoValidationSchema}
+          validationSchema={validationSchema}
           onSubmit={onSubmit}
           validateOnMount
         >
@@ -64,34 +48,43 @@ const ChangePassword = () => {
             return (
               <>
                 <CustomInput
-                  customClassName="w-full basis-[90%]"
-                  id="code"
-                  placeholder="code"
-                  name="code"
-                  onChangeText={formik.handleChange("code")}
-                  onBlur={formik.handleBlur("code")}
-                  value={formik.values.code}
-                  arialLabelBy="code"
-                  arialLabel="Label for code"
+                  id="password"
+                  placeholder="*******"
+                  name="password"
+                  onChangeText={formik.handleChange("password")}
+                  onBlur={formik.handleBlur("password")}
+                  value={formik.values.password}
+                  arialLabelBy="Password"
+                  arialLabel="Label for Password"
+                  isPassword
                   autoComplete="off"
                   inputMode="text"
-                />
-
-                <CustomInput
-                  customClassName="w-full basis-[90%] mt-5"
-                  id="code"
-                  placeholder="code"
-                  name="code"
-                  onChangeText={formik.handleChange("code")}
-                  onBlur={formik.handleBlur("code")}
-                  value={formik.values.code}
-                  arialLabelBy="code"
-                  arialLabel="Label for code"
-                  autoComplete="off"
-                  inputMode="text"
+                  secureTextEntry
+                  selectTextOnFocus={false}
+                  contextMenuHidden={true}
                 />
 
                 <View className="pt-5">
+                  <CustomInput
+                    id="confirmPassword"
+                    placeholder="*****"
+                    name="confirmPassword"
+                    keyboardType="visible-password"
+                    onChangeText={formik.handleChange("confirmPassword")}
+                    onBlur={formik.handleBlur("confirmPassword")}
+                    value={formik.values.confirmPassword}
+                    arialLabelBy="ConfirmPassword"
+                    arialLabel="Label for Confirm Password"
+                    isPassword
+                    autoComplete="off"
+                    inputMode="text"
+                    secureTextEntry
+                    selectTextOnFocus={false}
+                    contextMenuHidden={false}
+                  />
+                </View>
+
+                <View className="pt-7">
                   <CustomButton
                     buttonText="Change Password"
                     isLoading={formik.isSubmitting}

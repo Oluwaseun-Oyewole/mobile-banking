@@ -12,7 +12,7 @@ import * as Yup from "yup";
 
 const ForgotPassword = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, ,] = useState(false);
   const { push } = useRouter();
   const validationSchema = Yup.object({
     phone: Yup.string().required("Phone number is required"),
@@ -25,7 +25,6 @@ const ForgotPassword = () => {
   });
 
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
-    console.log("values -- ", values);
     setCurrentStep(2);
     resetForm({});
   };
@@ -41,7 +40,7 @@ const ForgotPassword = () => {
   if (currentStep === 2) {
     return (
       <AuthWrapper>
-        <View className="flex-1 bg-red-500">
+        <View className="flex-1 pt-6">
           <CustomText
             customClassName="text-[#979797] pb-3"
             fontFamily="PoppinsMedium"
@@ -86,17 +85,23 @@ const ForgotPassword = () => {
                   </View>
 
                   <View className="py-3">
-                    <CustomText>
+                    <CustomText
+                      customClassName="text-sm text-gray-500"
+                      fontFamily="PoppinsMedium"
+                    >
                       We texted you a code to verify your phone number (+84)
                       0398829xxx
                     </CustomText>
-                    <CustomText customClassName="pt-2">
+                    <CustomText
+                      customClassName="pt-2 text-sm text-gray-500"
+                      fontFamily="PoppinsMedium"
+                    >
                       This code will expired 10 minutes after this message. If
                       you don't get a message
                     </CustomText>
                   </View>
 
-                  <View className="pt-10">
+                  <View className="pt-7">
                     <CustomButton
                       buttonText="Change password"
                       isLoading={formik.isSubmitting}
@@ -115,8 +120,11 @@ const ForgotPassword = () => {
 
   return (
     <AuthWrapper>
-      <View className="flex-1 px-3 justify-center h-[40vh] shadow-xll">
-        <CustomText customClassName="text-[#979797]" fontFamily="PoppinsMedium">
+      <View className="flex-1 px-2 justify-center h-[35vh] rounded-lg">
+        <CustomText
+          customClassName="text-[#979797] text-sm"
+          fontFamily="PoppinsMedium"
+        >
           Text your phone number
         </CustomText>
 
@@ -131,7 +139,7 @@ const ForgotPassword = () => {
           {(formik) => {
             return (
               <>
-                <View className="py-4">
+                <View className="pt-3 pb-4">
                   <CustomPhoneNumber formik={formik} />
                 </View>
                 <CustomText
@@ -140,7 +148,7 @@ const ForgotPassword = () => {
                 >
                   We have tested you a code to verify your phone number
                 </CustomText>
-                <View className="pt-10">
+                <View className="pt-7">
                   <CustomButton
                     buttonText="Send"
                     isLoading={formik.isSubmitting}

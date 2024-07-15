@@ -52,7 +52,7 @@ const CustomInput = ({
         style={{ fontFamily: "PoppinsMedium" }}
         secureTextEntry={!showPassword}
         placeholderTextColor="#CACACA"
-        // cursorColor="#3629B7"
+        cursorColor="#3629B7"
       />
       {isPassword && (
         <View className="absolute right-5 top-[18px]">
