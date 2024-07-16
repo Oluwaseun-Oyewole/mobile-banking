@@ -12,6 +12,10 @@ export const MainScreensTitle: Record<string, string> = {
   search: "Search",
   message: "Message",
   settings: "Settings",
+  branch: "Branch",
+  interest: "Interest",
+  exchange: "Exchange",
+  exchange_rate: "Exchange_rate",
 };
 
 export const HomeCardArrays = [

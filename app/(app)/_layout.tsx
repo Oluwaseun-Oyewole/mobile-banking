@@ -132,9 +132,9 @@ export default function AppLayout() {
             return (
               <View>
                 {focused ? (
-                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
+                  <Ionicons name="barbell" size={25} color="#3629B7" />
                 ) : (
-                  <Ionicons name="settings-outline" size={25} />
+                  <Ionicons name="barbell" size={25} />
                 )}
               </View>
             );

@@ -5,8 +5,8 @@ export const enum Routes {
   forgotPassword = "/forgot_password",
   changePassword = "/change_password",
   password_success = "",
-  branch = "/branch",
-  exchange = "/exchange",
-  exchange_rate = "/exchange_rate",
-  interest = "/interest",
+  branch = "branch",
+  exchange = "exchange",
+  exchange_rate = "exchange_rate",
+  interest = "interest",
 }

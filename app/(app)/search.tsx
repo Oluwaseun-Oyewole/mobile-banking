@@ -16,10 +16,7 @@ const Search = () => {
           return (
             <CustomPressable
               key={index}
-              onPress={() => {
-                console.log("testing route push");
-                push(cards?.link);
-              }}
+              onPress={() => push(cards?.link)}
               customClassName="bg-transparent py-0"
             >
               <View className="mt-5 w-full flex-row justify-between px-4 items-center h-[120px] rounded-2xl bg-white">
@@ -31,7 +28,7 @@ const Search = () => {
                     {cards?.title}
                   </CustomText>
                   <CustomText
-                    customClassName="text-xs pt-[2px] text-neutral2"
+                    customClassName="text-xs pt-[5px] text-neutral2"
                     fontFamily="PoppinsMedium"
                   >
                     {cards?.description}
