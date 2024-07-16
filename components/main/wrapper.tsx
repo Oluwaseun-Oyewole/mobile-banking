@@ -25,7 +25,7 @@ const MainWrapper = ({ children }: PropsWithChildren) => {
         />
         <View
           className={`${
-            renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "#fff"
+            renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "bg-white"
           } h-[140px] w-full justify-center pt-11 px-8`}
         >
           <View className="items-center flex-row">
@@ -75,9 +75,11 @@ const MainWrapper = ({ children }: PropsWithChildren) => {
           </View>
         </View>
         <View
-          className={renderRouteBoolean(pathname) ? "bg-primary" : "bg-white"}
+          className={
+            renderRouteBoolean(pathname) ? "bg-primary" : "bg-primary4"
+          }
         >
-          <View className="px-8 bg-white rounded-tr-3xl rounded-tl-3xl">
+          <View className="px-8 bg-primary4 rounded-tr-3xl rounded-tl-3xl">
             {children}
           </View>
         </View>

@@ -7,12 +7,12 @@ import { View } from "react-native";
 export default function HomeScreen() {
   return (
     <MainWrapper>
-      <View className="w-full flex-row flex-wrap gap-2">
+      <View className="w-full flex-row flex-wrap justify-center gap-3 my-10">
         {HomeCardArrays?.map((cards, index) => {
           return (
             <View
               key={index}
-              className="shadow-2xl mt-4 items-center justify-center flex-3 w-[30%] text-center py-5 rounded-2xl bg-whites"
+              className="shadow-2xl mt-4 items-center justify-center flex-3 w-[29%] text-center py-5 rounded-2xl bg-white"
             >
               <View className="h-[30px]">
                 <Image
@@ -24,7 +24,7 @@ export default function HomeScreen() {
                 />
               </View>
               <CustomText
-                customClassName="text-[10px] px-3 pt-1 text-center text-[#979797]"
+                customClassName="text-[10px] px-3 pt-3 text-center"
                 fontFamily="PoppinsMedium"
               >
                 {cards?.title}
