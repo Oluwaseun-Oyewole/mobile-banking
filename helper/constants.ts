@@ -1,3 +1,5 @@
+import { Routes } from "@/routes/routes";
+
 export const AuthScreensTitle: Record<string, string> = {
   login: "Sign in",
   register: "Sign up",
@@ -52,5 +54,33 @@ export const HomeCardArrays = [
   {
     title: "Beneficiary",
     imagePath: require("@/assets/images/beneficiary.png"),
+  },
+];
+
+export const searchArrays = [
+  {
+    title: "Branch",
+    description: "Search for branch",
+    imagePath: require("@/assets/images/branch.svg"),
+    link: Routes.branch,
+  },
+
+  {
+    title: "Interest rate",
+    description: "Search for interest rate",
+    imagePath: require("@/assets/images/interest.svg"),
+    link: Routes.interest,
+  },
+  {
+    title: "Exchange rate",
+    description: "Search for exchange rate",
+    imagePath: require("@/assets/images/exchange-rate.svg"),
+    link: Routes.exchange_rate,
+  },
+  {
+    title: "Exchange",
+    description: "Exchange amount of money",
+    imagePath: require("@/assets/images/exchange.svg"),
+    link: Routes.exchange,
   },
 ];
