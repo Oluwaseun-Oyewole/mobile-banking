@@ -13,9 +13,9 @@ export const MainScreensTitle: Record<string, string> = {
   message: "Message",
   settings: "Settings",
   branch: "Branch",
-  interest: "Interest",
+  interest: "Interest rate",
   exchange: "Exchange",
-  exchange_rate: "Exchange_rate",
+  exchange_rate: "Exchange rate",
 };
 
 export const HomeCardArrays = [

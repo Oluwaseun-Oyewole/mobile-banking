@@ -17,7 +17,7 @@ export default function AppLayout() {
         tabBarActiveTintColor: "white",
         tabBarShowLabel: false,
         // tabBarActiveBackgroundColor: "#3629B7",
-        tabBarStyle: { height: 90 },
+        tabBarStyle: { height: 70 },
       }}
       backBehavior="history"
     >

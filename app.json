@@ -28,7 +28,13 @@
     },
     "plugins": [
       "expo-router",
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow mobile banking to use your location."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

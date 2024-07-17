@@ -61,6 +61,7 @@ const Login = () => {
 
     if (biometricAuth.success) {
       push(Routes.Home);
+      updateCurrentUser();
     } else {
       Alert.alert("Authentication failed", "Please try again.", [
         { text: "OK" },

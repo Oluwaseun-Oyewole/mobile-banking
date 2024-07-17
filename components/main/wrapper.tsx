@@ -78,9 +78,7 @@ const MainWrapper = ({ children }: PropsWithChildren) => {
             renderRouteBoolean(pathname) ? "bg-primary" : "bg-primary4"
           }
         >
-          <View className="px-8 bg-primary4 rounded-tr-3xl rounded-tl-3xl">
-            {children}
-          </View>
+          <View className={`rounded-tr-3xl rounded-tl-3xl"`}>{children}</View>
         </View>
       </View>
     </ParallaxScrollView>
