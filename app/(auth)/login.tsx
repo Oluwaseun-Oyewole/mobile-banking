@@ -127,7 +127,7 @@ const Login = () => {
             );
           }}
         </Formik>
-        <View className="h-[130px] items-center justify-center mt-5">
+        <View className="h-[80px] items-center justify-center pt-10">
           {isBiometricSupported ? (
             <View className="h-[75px]">
               <Image

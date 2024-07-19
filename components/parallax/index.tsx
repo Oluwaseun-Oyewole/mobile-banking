@@ -11,14 +11,12 @@ export default function ParallaxScrollView({ children }: Props) {
       <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
           contentContainerStyle={{
-            backgroundColor: "#F2F1F9",
+            // backgroundColor: "#3629B7",
             flexGrow: 1,
-            marginBottom: 100,
           }}
-          extraScrollHeight={500}
           keyboardDismissMode="on-drag"
           enableOnAndroid
-          // keyboardShouldPersistTaps="handled"
+          keyboardShouldPersistTaps="handled"
         >
           {children}
         </KeyboardAwareScrollView>

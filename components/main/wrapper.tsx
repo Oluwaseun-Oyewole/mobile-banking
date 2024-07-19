@@ -80,10 +80,10 @@ const MainWrapper = ({
       </View>
 
       <View
-        className={renderRouteBoolean(pathname) ? "bg-primary" : "bg-primary4"}
+        className={renderRouteBoolean(pathname) ? "bg-primary" : "bg-green-900"}
       >
         <View
-          className={`rounded-tr-3xl rounded-tl-3xl px-8 h-full`}
+          className="rounded-tr-[45px] rounded-tl-[45px] px-8 h-full"
           style={{ backgroundColor }}
         >
           {children}
