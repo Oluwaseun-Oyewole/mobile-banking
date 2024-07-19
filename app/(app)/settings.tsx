@@ -6,7 +6,7 @@ import { View } from "react-native";
 const Settings = () => {
   return (
     <MainWrapper>
-      <View>
+      <View className=" bg-red-500">
         <CustomText>Settings</CustomText>
       </View>
     </MainWrapper>

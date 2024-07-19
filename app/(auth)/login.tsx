@@ -71,7 +71,7 @@ const Login = () => {
 
   return (
     <AuthWrapper>
-      <View className="flex-1 h-full">
+      <View>
         <AuthGreeting
           heading="Welcome Back"
           body="Hello there, sign in to continue"
@@ -127,7 +127,7 @@ const Login = () => {
             );
           }}
         </Formik>
-        <View className="h-[130px] items-center justify-center ">
+        <View className="h-[130px] items-center justify-center mt-5">
           {isBiometricSupported ? (
             <View className="h-[75px]">
               <Image
@@ -148,6 +148,7 @@ const Login = () => {
             </CustomText>
           )}
         </View>
+
         <Account
           text="Don't have an account ?"
           linkText="Sign Up"

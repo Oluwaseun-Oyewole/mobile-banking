@@ -50,7 +50,7 @@ const CustomInput = ({
           customClassName
         )}
         style={{ fontFamily: "PoppinsMedium" }}
-        secureTextEntry={!showPassword}
+        secureTextEntry={isPassword && !showPassword}
         placeholderTextColor="#CACACA"
         cursorColor="#3629B7"
       />

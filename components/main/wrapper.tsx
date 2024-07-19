@@ -9,76 +9,84 @@ import { TouchableOpacity, View } from "react-native";
 import ParallaxScrollView from "../parallax";
 import { CustomText } from "../text";
 
-const MainWrapper = ({ children }: PropsWithChildren) => {
+type MainWrapperPropsType = PropsWithChildren & { backgroundColor?: string };
+
+const MainWrapper = ({
+  children,
+  backgroundColor = "#F2F1F9",
+}: MainWrapperPropsType) => {
   const pathname = usePathname();
   const getTitle = pathname.split("/");
   const getTitleEnum = getTitle[getTitle.length - 1];
   const router = useRouter();
   return (
     <ParallaxScrollView>
-      <View>
-        <StatusBar
-          backgroundColor={renderRouteBoolean(pathname) ? "#3629B7" : "#fff"}
-          style={`${renderRouteBoolean(pathname) ? "light" : "dark"}`}
-          animated
-        />
-        <View
-          className={`${
-            renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "bg-white"
-          } h-[140px] w-full justify-center pt-11 px-8`}
-        >
-          <View className="items-center flex-row">
-            {pathname !== "/" ? (
+      <StatusBar
+        backgroundColor={renderRouteBoolean(pathname) ? "#3629B7" : "#fff"}
+        style={`${renderRouteBoolean(pathname) ? "light" : "dark"}`}
+        animated
+      />
+
+      <View
+        className={`${
+          renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "bg-white"
+        } h-[90px] w-full justify-center px-7`}
+      >
+        <View className="items-center flex-row">
+          {pathname !== "/" ? (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons
+                name="chevron-back-outline"
+                size={22}
+                color={renderRouteBoolean(pathname) ? "#fff" : "#000"}
+              />
+            </TouchableOpacity>
+          ) : (
+            <View className="flex-row justify-between items-center flex-1">
+              <View className="items-center justify-center h-[40px]">
+                <Image
+                  className="w-[40px] h-full"
+                  placeholder="illustration icon"
+                  contentFit="cover"
+                  transition={1000}
+                  source={require("@/assets/images/Avatar.png")}
+                />
+              </View>
+              <CustomText
+                customClassName="text-white"
+                fontFamily="PoppinsMedium"
+              >
+                Hi, Samuel Oyewole
+              </CustomText>
+
               <TouchableOpacity onPress={() => router.back()}>
                 <Ionicons
-                  name="chevron-back-outline"
-                  size={22}
+                  name="notifications"
+                  size={30}
                   color={renderRouteBoolean(pathname) ? "#fff" : "#000"}
                 />
               </TouchableOpacity>
-            ) : (
-              <View className="flex-row justify-between items-center flex-1">
-                <View className="items-center justify-center h-[40px]">
-                  <Image
-                    className="w-[40px] h-full"
-                    placeholder="illustration icon"
-                    contentFit="cover"
-                    transition={1000}
-                    source={require("@/assets/images/Avatar.png")}
-                  />
-                </View>
-                <CustomText
-                  customClassName="text-white"
-                  fontFamily="PoppinsMedium"
-                >
-                  Hi, Samuel Oyewole
-                </CustomText>
-
-                <TouchableOpacity onPress={() => router.back()}>
-                  <Ionicons
-                    name="notifications"
-                    size={30}
-                    color={renderRouteBoolean(pathname) ? "#fff" : "#000"}
-                  />
-                </TouchableOpacity>
-              </View>
-            )}
-            <CustomText
-              className={`${
-                renderRouteBoolean(pathname) ? "text-white" : "text-black"
-              } pl-3 text-[17px]`}
-              fontFamily="PoppinsBold"
-            >
-              {MainScreensTitle[getTitleEnum]}
-            </CustomText>
-          </View>
+            </View>
+          )}
+          <CustomText
+            className={`${
+              renderRouteBoolean(pathname) ? "text-white" : "text-black"
+            } pl-3 text-[17px]`}
+            fontFamily="PoppinsBold"
+          >
+            {MainScreensTitle[getTitleEnum]}
+          </CustomText>
         </View>
+      </View>
+
+      <View
+        className={renderRouteBoolean(pathname) ? "bg-primary" : "bg-primary4"}
+      >
         <View
-          className={
-            renderRouteBoolean(pathname) ? "bg-primary" : "bg-primary4"
-          }
+          className={`rounded-tr-3xl rounded-tl-3xl px-8 h-full`}
+          style={{ backgroundColor }}
         >
-          <View className={`rounded-tr-3xl rounded-tl-3xl"`}>{children}</View>
+          {children}
         </View>
       </View>
     </ParallaxScrollView>

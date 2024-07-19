@@ -199,6 +199,26 @@ export default function AppLayout() {
           },
         }}
       />
+
+      <Tabs.Screen
+        name="language"
+        options={{
+          href: null,
+          title: "language",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View>
+                {focused ? (
+                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
+                ) : (
+                  <Ionicons name="settings-outline" size={25} />
+                )}
+              </View>
+            );
+          },
+        }}
+      />
     </Tabs>
   );
 }

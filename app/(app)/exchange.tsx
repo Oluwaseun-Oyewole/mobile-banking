@@ -5,9 +5,9 @@ import { View } from "react-native";
 
 const Exchange = () => {
   return (
-    <MainWrapper>
-      <View>
-        <CustomText>Exchange</CustomText>
+    <MainWrapper backgroundColor="#fff">
+      <View className="bg-white flex-1">
+        <CustomText>Exchange Rate</CustomText>
       </View>
     </MainWrapper>
   );

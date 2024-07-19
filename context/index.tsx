@@ -29,7 +29,7 @@ export const AuthContext = createContext<InitialStatesType>(initialValues);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [[isLoading, session], setSession] = useStorageState("session");
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState(true);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
 
   function updateCurrentUser() {

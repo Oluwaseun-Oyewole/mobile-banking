@@ -1,40 +1,59 @@
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
+import { interestArray } from "@/helper/constants";
 import React from "react";
 import { View } from "react-native";
 
 const Interest = () => {
-  const interestArray = new Array(10).fill({
-    interest_kind: "individual interest",
-    deposit: "1M",
-    rate: "50%",
-  });
-
   return (
-    <MainWrapper>
-      <View className="bg-green-500">
-        {interestArray?.map((item, index) => {
+    <MainWrapper backgroundColor="#fff">
+      <View className="">
+        <View className="flex-row pb-6">
+          <CustomText
+            fontFamily="PoppinsBold"
+            customClassName="w-[60%] text-neutral3"
+          >
+            Interest Kind
+          </CustomText>
+          <CustomText
+            fontFamily="PoppinsBold"
+            customClassName="w-[25%] text-neutral3"
+          >
+            Deposit
+          </CustomText>
+          <View className="w-[15%]">
+            <CustomText
+              fontFamily="PoppinsBold"
+              customClassName="text-neutral3"
+            >
+              Rate
+            </CustomText>
+          </View>
+        </View>
+        {interestArray?.map((interest, index) => {
           return (
-            <View key={index}>
-              <View>
-                <CustomText>Interest Kind</CustomText>
-                <CustomText>{item?.interest_kind}</CustomText>
-              </View>
-
-              <View>
-                <CustomText>Deposit</CustomText>
-                <CustomText>{item?.deposit}</CustomText>
-              </View>
-
-              <View>
-                <CustomText>Rate</CustomText>
+            <View key={index} className="pb-4">
+              <View className="flex-row items-center border-b-2 border-gray-100 pb-3">
                 <CustomText
-                  className="text-primary1"
+                  customClassName="w-[60%]"
                   fontFamily="PoppinsMedium"
                 >
-                  {item?.rate}
+                  {interest?.interestKind}
                 </CustomText>
-                0
+                <CustomText
+                  customClassName="w-[25%]"
+                  fontFamily="PoppinsMedium"
+                >
+                  {interest?.deposit}
+                </CustomText>
+                <View className="w-[15%]">
+                  <CustomText
+                    customClassName="text-primary"
+                    fontFamily="PoppinsMedium"
+                  >
+                    {interest?.rate}
+                  </CustomText>
+                </View>
               </View>
             </View>
           );

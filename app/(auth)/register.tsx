@@ -70,7 +70,7 @@ const Registration = () => {
 
               <CustomInput
                 id="password"
-                placeholder="Testing123@"
+                placeholder="*****"
                 name="password"
                 keyboardType="visible-password"
                 onChangeText={formik.handleChange("password")}

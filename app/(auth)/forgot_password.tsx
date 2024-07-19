@@ -21,7 +21,7 @@ const ForgotPassword = () => {
   const stepTwoValidationSchema = Yup.object({
     code: Yup.string()
       .required("Phone number is required")
-      .min(6, "Code must be 4 characters"),
+      .min(6, "Code must be 6 characters"),
   });
 
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {

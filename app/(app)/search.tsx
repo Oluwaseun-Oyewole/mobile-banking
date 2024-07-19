@@ -11,7 +11,7 @@ const Search = () => {
   const { push } = useRouter();
   return (
     <MainWrapper>
-      <View className="w-full flex-wrap my-4">
+      <View className="w-full flex-wrap">
         {searchArrays?.map((cards, index) => {
           return (
             <CustomPressable

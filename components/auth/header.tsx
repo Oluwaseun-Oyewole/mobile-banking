@@ -10,7 +10,7 @@ type IAuthGreeting = {
 };
 const AuthGreeting = ({ heading, body, imagePath }: IAuthGreeting) => {
   return (
-    <View className="pt-5">
+    <View className="pt-6">
       <CustomText className="text-primary text-2xl" fontFamily="PoppinsBold">
         {heading}
       </CustomText>

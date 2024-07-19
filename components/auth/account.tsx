@@ -13,8 +13,8 @@ const Account = ({
   url: string;
 }) => {
   return (
-    <View className="flex-row items-center justify-center">
-      <CustomText>{text}</CustomText>
+    <View className="flex-row items-center justify-center pt-4">
+      <CustomText fontFamily="PoppinsMedium">{text}</CustomText>
       <CustomText
         className="pl-2 text-primary text-center"
         fontFamily="PoppinsBold"

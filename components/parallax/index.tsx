@@ -1,17 +1,28 @@
 import type { PropsWithChildren } from "react";
-import { View } from "react-native";
-import Animated, { useAnimatedRef } from "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {} & PropsWithChildren;
 
 export default function ParallaxScrollView({ children }: Props) {
-  const scrollRef = useAnimatedRef<Animated.ScrollView>();
-
   return (
-    <View className="bg-primary4 flex-1 h-screen">
-      <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
-        <View>{children}</View>
-      </Animated.ScrollView>
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAwareScrollView
+          contentContainerStyle={{
+            backgroundColor: "#F2F1F9",
+            flexGrow: 1,
+            marginBottom: 100,
+          }}
+          extraScrollHeight={500}
+          keyboardDismissMode="on-drag"
+          enableOnAndroid
+          // keyboardShouldPersistTaps="handled"
+        >
+          {children}
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
