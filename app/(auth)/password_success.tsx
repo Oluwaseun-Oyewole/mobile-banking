@@ -10,8 +10,8 @@ import { View } from "react-native";
 const ChangePassword = () => {
   const { push } = useRouter();
   return (
-    <AuthWrapper>
-      <View className="h-[600px] flex-1 items-center justify-center">
+    <AuthWrapper backgroundColor="#fff">
+      <View className="h-full items-center justify-center">
         <Image
           className="h-[180px] w-[180px]"
           placeholder="illustration icon"
@@ -23,7 +23,7 @@ const ChangePassword = () => {
           customClassName="text-primary pt-6 text-lg"
           fontFamily="PoppinsBold"
         >
-          Change password successfully
+          Changed password successfully
         </CustomText>
         <CustomText customClassName="py-5" fontFamily="PoppinsMedium">
           You have successfully change password. Please use the new password

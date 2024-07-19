@@ -11,7 +11,7 @@ export default function ParallaxScrollView({ children }: Props) {
       <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
           contentContainerStyle={{
-            // backgroundColor: "#3629B7",
+            backgroundColor: "#fff",
             flexGrow: 1,
           }}
           keyboardDismissMode="on-drag"

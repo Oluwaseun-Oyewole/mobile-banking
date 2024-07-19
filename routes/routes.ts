@@ -4,7 +4,7 @@ export const enum Routes {
   register = "/register",
   forgotPassword = "/forgot_password",
   changePassword = "/change_password",
-  password_success = "",
+  password_success = "password_success",
   branch = "branch",
   exchange = "exchange",
   exchange_rate = "exchange_rate",

@@ -7,7 +7,7 @@ const AuthLayout = () => {
       screenOptions={{
         headerShown: false,
         navigationBarColor: "white",
-        navigationBarHidden: true,
+        // navigationBarHidden: true,
       }}
     >
       <Stack.Screen

@@ -39,8 +39,8 @@ const ForgotPassword = () => {
 
   if (currentStep === 2) {
     return (
-      <AuthWrapper backgroundColor="#000">
-        <View className="pt-6">
+      <AuthWrapper backgroundColor="#FFF">
+        <View className="pt-12 h-full">
           <CustomText
             customClassName="text-[#979797] pb-3"
             fontFamily="PoppinsMedium"
@@ -119,8 +119,8 @@ const ForgotPassword = () => {
   }
 
   return (
-    <AuthWrapper>
-      <View className="flex-1 px-2 justify-center h-[35vh] rounded-lg">
+    <AuthWrapper backgroundColor="#FFF">
+      <View className="h-full pt-12">
         <CustomText
           customClassName="text-[#979797] text-sm"
           fontFamily="PoppinsMedium"

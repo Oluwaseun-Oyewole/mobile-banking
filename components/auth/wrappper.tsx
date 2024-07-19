@@ -28,8 +28,8 @@ const AuthWrapper = ({
       />
       <View
         className={`${
-          renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "#fff"
-        } h-[70px] w-full justify-center px-8`}
+          renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "bg-[#fff]"
+        } h-[80px] w-full justify-center px-8 pt-4`}
       >
         <View className="items-center flex-row">
           <TouchableOpacity onPress={() => router.back()}>

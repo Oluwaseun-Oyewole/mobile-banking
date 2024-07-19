@@ -115,7 +115,7 @@ const Login = () => {
                     Forgot your password ?
                   </Link>
                 </CustomText>
-                <View className="pt-10">
+                <View className="pt-12">
                   <CustomButton
                     buttonText="Sign in"
                     isLoading={formik.isSubmitting}
@@ -127,7 +127,7 @@ const Login = () => {
             );
           }}
         </Formik>
-        <View className="h-[80px] items-center justify-center pt-10">
+        <View className="h-[100px] items-center justify-center pt-10">
           {isBiometricSupported ? (
             <View className="h-[75px]">
               <Image

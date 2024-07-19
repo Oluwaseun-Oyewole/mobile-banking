@@ -26,8 +26,8 @@ const ChangePassword = () => {
   };
 
   return (
-    <AuthWrapper>
-      <View className="h-full pt-10">
+    <AuthWrapper backgroundColor="#fff">
+      <View className="h-full pt-8">
         <CustomText
           customClassName="text-[#979797] pb-3"
           fontFamily="PoppinsMedium"
