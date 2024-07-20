@@ -9,11 +9,15 @@ import { TouchableOpacity, View } from "react-native";
 import ParallaxScrollView from "../parallax";
 import { CustomText } from "../text";
 
-type MainWrapperPropsType = PropsWithChildren & { backgroundColor?: string };
+type MainWrapperPropsType = PropsWithChildren & {
+  backgroundColor?: string;
+  height?: number;
+};
 
 const MainWrapper = ({
   children,
   backgroundColor = "#F2F1F9",
+  height = 90,
 }: MainWrapperPropsType) => {
   const pathname = usePathname();
   const getTitle = pathname.split("/");
@@ -30,7 +34,8 @@ const MainWrapper = ({
       <View
         className={`${
           renderRouteBoolean(pathname) ? "bg-[#3629B7]" : "bg-white"
-        } h-[90px] w-full justify-center px-7`}
+        } w-full justify-center px-7`}
+        style={{ height }}
       >
         <View className="items-center flex-row">
           {pathname !== "/" ? (
@@ -80,10 +85,13 @@ const MainWrapper = ({
       </View>
 
       <View
-        className={renderRouteBoolean(pathname) ? "bg-primary" : "bg-green-900"}
+        className={renderRouteBoolean(pathname) ? "bg-primary" : "bg-white"}
       >
         <View
-          className="rounded-tr-[45px] rounded-tl-[45px] px-8 h-full"
+          className={`${
+            renderRouteBoolean(pathname) &&
+            "rounded-tr-[40px] rounded-tl-[40px]"
+          } px-8 h-full`}
           style={{ backgroundColor }}
         >
           {children}

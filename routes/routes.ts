@@ -10,4 +10,6 @@ export const enum Routes {
   exchange_rate = "exchange_rate",
   interest = "interest",
   language = "language",
+  password_change = "password_change",
+  app_info = "app_info",
 }

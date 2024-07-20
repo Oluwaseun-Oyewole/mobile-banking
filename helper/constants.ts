@@ -276,3 +276,19 @@ export const languagesArray: LanguageType[] = [
     countryName: "Portugal",
   },
 ];
+
+type CardType = {
+  username: string;
+  cardName: string;
+  cardNumber: string;
+  availableBalance: number;
+  cardType: "VISA" | "MASTER" | "VERVE";
+};
+
+export const cardDetails: CardType = {
+  username: "Seun Samuel",
+  cardName: "Amazon Platinium",
+  cardNumber: "4567 **** **** 909",
+  availableBalance: 345643,
+  cardType: "VISA",
+};

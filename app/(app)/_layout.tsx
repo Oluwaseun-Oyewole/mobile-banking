@@ -219,6 +219,46 @@ export default function AppLayout() {
           },
         }}
       />
+
+      <Tabs.Screen
+        name="password_change"
+        options={{
+          href: null,
+          title: "password_change",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View>
+                {focused ? (
+                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
+                ) : (
+                  <Ionicons name="settings-outline" size={25} />
+                )}
+              </View>
+            );
+          },
+        }}
+      />
+
+      <Tabs.Screen
+        name="app_info"
+        options={{
+          href: null,
+          title: "app_info",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View>
+                {focused ? (
+                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
+                ) : (
+                  <Ionicons name="settings-outline" size={25} />
+                )}
+              </View>
+            );
+          },
+        }}
+      />
     </Tabs>
   );
 }
