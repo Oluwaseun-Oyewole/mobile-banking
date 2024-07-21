@@ -19,3 +19,7 @@ export function formatCurrency(
   const formattedCurrency = `${currencySymbol}${integerWithCommas}.${fractionalPart}`;
   return formattedCurrency;
 }
+
+export const truncate = (str: string, length?: number) => {
+  return str.slice(0, length ?? 10) + "....";
+};

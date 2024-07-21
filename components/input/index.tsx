@@ -17,6 +17,7 @@ type ICustomProps = TextInputProps & {
   arialLabel?: string;
   arialLabelBy?: string;
   customClassName?: string;
+  showLabel?: boolean;
 };
 const CustomInput = ({
   name,
@@ -24,6 +25,7 @@ const CustomInput = ({
   arialLabel,
   arialLabelBy,
   customClassName,
+  showLabel,
   ...rest
 }: ICustomProps) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,13 +36,16 @@ const CustomInput = ({
 
   return (
     <View className="relative">
-      {/* <CustomText
-        aria-label={arialLabel}
-        nativeID={name}
-        customClassName="pb-[0.5px]"
-      >
-        {arialLabelBy}
-      </CustomText> */}
+      {showLabel && (
+        <CustomText
+          aria-label={arialLabel}
+          nativeID={name}
+          customClassName="pb-1 text-neutral2"
+          fontFamily="PoppinsMedium"
+        >
+          {arialLabelBy}
+        </CustomText>
+      )}
       <TextInput
         aria-label={name}
         aria-labelledby={arialLabelBy ?? ""}
@@ -55,7 +60,11 @@ const CustomInput = ({
         cursorColor="#3629B7"
       />
       {isPassword && (
-        <View className="absolute right-5 top-[18px]">
+        <View
+          className={`absolute right-5 ${
+            showLabel ? "top-[45px]" : "top-[18px]"
+          }`}
+        >
           <TouchableOpacity onPress={togglePasswordVisibility}>
             <CustomText>
               {!showPassword ? (

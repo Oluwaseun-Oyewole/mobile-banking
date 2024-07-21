@@ -8,7 +8,7 @@ export const AuthScreensTitle: Record<string, string> = {
 };
 
 export const MainScreensTitle: Record<string, string> = {
-  home: "/",
+  home: "",
   search: "Search",
   message: "Message",
   settings: "Settings",
@@ -17,6 +17,8 @@ export const MainScreensTitle: Record<string, string> = {
   exchange: "Exchange",
   exchange_rate: "Exchange rate",
   language: "Language",
+  app_info: "App Information",
+  password_change: "Change Password",
 };
 
 export const HomeCardArrays = [
@@ -77,13 +79,6 @@ export const searchArrays = [
     link: Routes.interest,
   },
 
-  // {
-  //   title: "Language",
-  //   description: "Exchange amount of money",
-  //   imagePath: require("@/assets/images/exchange.svg"),
-  //   link: Routes.language,
-  // },
-
   {
     title: "Exchange rate",
     description: "Search for exchange rate",
@@ -95,6 +90,42 @@ export const searchArrays = [
     description: "Exchange amount of money",
     imagePath: require("@/assets/images/exchange.svg"),
     link: Routes.exchange,
+  },
+];
+
+export const messages = [
+  {
+    title: "Bank of America",
+    details: "Search for branch",
+    imagePath: require("@/assets/images/Bank.svg"),
+    date: "Today",
+  },
+
+  {
+    title: "Account",
+    details: "Your account is limited, Please follow...",
+    imagePath: require("@/assets/images/Account.svg"),
+    date: "12/10",
+  },
+
+  {
+    title: "Alert",
+    details: "Your statement is ready for you to...",
+    imagePath: require("@/assets/images/Alert.svg"),
+    date: "10/20",
+  },
+  {
+    title: "Paypal",
+    details: "Your account has been locked Ple...",
+    imagePath: require("@/assets/images/Paypal.svg"),
+    date: "10/11",
+  },
+
+  {
+    title: "Withdrawal",
+    details: "Dear customer, 285762 is your account...",
+    imagePath: require("@/assets/images/Withdrawal.svg"),
+    date: "10/11",
   },
 ];
 
@@ -292,3 +323,17 @@ export const cardDetails: CardType = {
   availableBalance: 345643,
   cardType: "VISA",
 };
+
+export const settings = [
+  { title: "Password", link: Routes.password_change },
+  { title: "Touch ID" },
+  { title: "Languages", link: Routes.language },
+  { title: "App information", link: Routes.app_info },
+  { title: "Customer care", phone: "0908729983" },
+];
+
+export const app_information = [
+  { title: "Date of manufactured", details: "July 20" },
+  { title: "Version", details: "1.00" },
+  { title: "Language", details: "English" },
+];

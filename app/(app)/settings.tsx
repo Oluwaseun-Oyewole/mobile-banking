@@ -1,19 +1,12 @@
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
-import { Routes } from "@/routes/routes";
+import { settings } from "@/helper/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
 import React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
-const settings = [
-  { title: "Password", link: Routes.password_change },
-  { title: "Touch ID" },
-  { title: "Languages", link: Routes.language },
-  { title: "App information", link: Routes.app_info },
-  { title: "Customer care", phone: "0908729983" },
-];
 const Settings = () => {
   return (
     <MainWrapper height={150} backgroundColor="#fff">
@@ -45,15 +38,17 @@ const Settings = () => {
                     {setting?.title}
                   </CustomText>
                   {setting?.link && (
-                    <CustomText>
-                      <Link href={`${setting?.link}`}>
-                        <Ionicons
-                          name="arrow-forward-sharp"
-                          className="font-black"
-                          size={15}
-                        />
-                      </Link>
-                    </CustomText>
+                    <TouchableOpacity>
+                      <CustomText>
+                        <Link href={`${setting?.link}`}>
+                          <Ionicons
+                            name="arrow-forward-sharp"
+                            className="font-black"
+                            size={15}
+                          />
+                        </Link>
+                      </CustomText>
+                    </TouchableOpacity>
                   )}
                   {setting?.phone && (
                     <CustomText

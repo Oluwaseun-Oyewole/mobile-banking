@@ -26,6 +26,7 @@ const Registration = () => {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[!@#$%^&*:;'><.,/?}{[\]\-_+=])(?=.{8,})/,
         "Must Contain 7 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
       )
+      .required("Password is required.")
       .required("Password is required"),
   });
 

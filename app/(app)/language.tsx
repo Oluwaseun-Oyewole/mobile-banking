@@ -13,8 +13,8 @@ const Languages = () => {
     setSelected(!selected);
   };
   return (
-    <MainWrapper>
-      <View className="bg-white">
+    <MainWrapper backgroundColor="#fff">
+      <View className="pt-3">
         {languagesArray?.map((language, index) => {
           return (
             <View key={index} className="pb-4">

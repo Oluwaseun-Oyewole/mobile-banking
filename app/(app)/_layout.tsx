@@ -128,17 +128,6 @@ export default function AppLayout() {
           href: null,
           title: "branch",
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View>
-                {focused ? (
-                  <Ionicons name="barbell" size={25} color="#3629B7" />
-                ) : (
-                  <Ionicons name="barbell" size={25} />
-                )}
-              </View>
-            );
-          },
         }}
       />
       <Tabs.Screen
@@ -147,17 +136,6 @@ export default function AppLayout() {
           href: null,
           title: "interest",
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View>
-                {focused ? (
-                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
-                ) : (
-                  <Ionicons name="settings-outline" size={25} />
-                )}
-              </View>
-            );
-          },
         }}
       />
 
@@ -167,17 +145,6 @@ export default function AppLayout() {
           href: null,
           title: "exchange",
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View>
-                {focused ? (
-                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
-                ) : (
-                  <Ionicons name="settings-outline" size={25} />
-                )}
-              </View>
-            );
-          },
         }}
       />
       <Tabs.Screen
@@ -206,17 +173,6 @@ export default function AppLayout() {
           href: null,
           title: "language",
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View>
-                {focused ? (
-                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
-                ) : (
-                  <Ionicons name="settings-outline" size={25} />
-                )}
-              </View>
-            );
-          },
         }}
       />
 
@@ -226,17 +182,6 @@ export default function AppLayout() {
           href: null,
           title: "password_change",
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View>
-                {focused ? (
-                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
-                ) : (
-                  <Ionicons name="settings-outline" size={25} />
-                )}
-              </View>
-            );
-          },
         }}
       />
 
@@ -246,17 +191,6 @@ export default function AppLayout() {
           href: null,
           title: "app_info",
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View>
-                {focused ? (
-                  <Ionicons name="settings-outline" size={25} color="#3629B7" />
-                ) : (
-                  <Ionicons name="settings-outline" size={25} />
-                )}
-              </View>
-            );
-          },
         }}
       />
     </Tabs>
