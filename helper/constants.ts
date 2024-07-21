@@ -19,6 +19,7 @@ export const MainScreensTitle: Record<string, string> = {
   language: "Language",
   app_info: "App Information",
   password_change: "Change Password",
+  notification: "Notification",
 };
 
 export const HomeCardArrays = [
@@ -148,10 +149,6 @@ export const interestArray: InterestType[] = [
   { interestKind: "Corporate customers", deposit: "5M", rate: "5.50%" },
   { interestKind: "Corporate customers", deposit: "5M", rate: "5.50%" },
   { interestKind: "Individual customers", deposit: "1M", rate: "4.50%" },
-  { interestKind: "Corporate customers", deposit: "5M", rate: "5.50%" },
-  { interestKind: "Corporate customers", deposit: "5M", rate: "5.50%" },
-  { interestKind: "Individual customers", deposit: "1M", rate: "4.50%" },
-  { interestKind: "Corporate customers", deposit: "5M", rate: "5.50%" },
 ];
 
 type ExchangeType = {
@@ -228,27 +225,6 @@ export const exchangeRateArray: ExchangeType[] = [
     countryName: "France",
     buy: "23.45",
     sell: "34.56",
-  },
-
-  {
-    imageURI: require("@/assets/images/KR.svg"),
-    countryName: "Korea",
-    buy: "3.704",
-    sell: "5.151",
-  },
-
-  {
-    imageURI: require("@/assets/images/NI.svg"),
-    countryName: "Nicaragua",
-    buy: "9.123",
-    sell: "12.09",
-  },
-
-  {
-    imageURI: require("@/assets/images/PT.svg"),
-    countryName: "Portugal",
-    buy: "1.403",
-    sell: "1.746",
   },
 ];
 
@@ -336,4 +312,11 @@ export const app_information = [
   { title: "Date of manufactured", details: "July 20" },
   { title: "Version", details: "1.00" },
   { title: "Language", details: "English" },
+];
+
+export const notification = [
+  { title: "Withdrawal", details: "Short details about withdrawal" },
+  { title: "Savings", details: "Short details about savings" },
+  { title: "Discount", details: "Short details about discount" },
+  { title: "Complaint", details: "Short details about complaint resolved" },
 ];

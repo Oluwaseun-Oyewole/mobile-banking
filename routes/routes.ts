@@ -12,4 +12,6 @@ export const enum Routes {
   language = "language",
   password_change = "password_change",
   app_info = "app_info",
+  notification = "notification",
+  "[notification_details]" = "Notification Details",
 }

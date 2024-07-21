@@ -1,3 +1,5 @@
+import { Routes } from "@/routes/routes";
+
 export function renderRouteBoolean(pathname: string) {
   if (
     pathname === "/login" ||
@@ -23,3 +25,21 @@ export function formatCurrency(
 export const truncate = (str: string, length?: number) => {
   return str.slice(0, length ?? 10) + "....";
 };
+
+export const tabs = [
+  { route: "/", showTab: true },
+  { route: "/message", showTab: false },
+];
+
+export const showTabs = () => {};
+
+export function renderTabRoute(pathname: string) {
+  if (
+    pathname === Routes.Home ||
+    pathname === "/search" ||
+    pathname === "/settings" ||
+    pathname === "/message"
+  )
+    return true;
+  return false;
+}

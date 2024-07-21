@@ -1,6 +1,6 @@
-import AuthWrapper from "@/components/auth/wrappper";
 import CustomButton from "@/components/button";
 import CustomInput from "@/components/input";
+import MainWrapper from "@/components/main/wrapper";
 import { Routes } from "@/routes/routes";
 import { useRouter } from "expo-router";
 import { Formik } from "formik";
@@ -31,7 +31,7 @@ const PasswordChange = () => {
   };
 
   return (
-    <AuthWrapper backgroundColor="#fff">
+    <MainWrapper backgroundColor="#fff">
       <View className="h-full pt-5">
         <Formik
           initialValues={{
@@ -116,7 +116,7 @@ const PasswordChange = () => {
           }}
         </Formik>
       </View>
-    </AuthWrapper>
+    </MainWrapper>
   );
 };
 

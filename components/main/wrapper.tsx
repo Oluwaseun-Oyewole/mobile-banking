@@ -1,8 +1,9 @@
 import { renderRouteBoolean } from "@/helper";
 import { MainScreensTitle } from "@/helper/constants";
+import { Routes } from "@/routes/routes";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { usePathname, useRouter } from "expo-router";
+import { Link, usePathname, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { PropsWithChildren } from "react";
 import { TouchableOpacity, View } from "react-native";
@@ -65,11 +66,13 @@ const MainWrapper = ({
               </CustomText>
 
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons
-                  name="notifications"
-                  size={30}
-                  color={renderRouteBoolean(pathname) ? "#fff" : "#000"}
-                />
+                <Link href={Routes.notification}>
+                  <Ionicons
+                    name="notifications"
+                    size={30}
+                    color={renderRouteBoolean(pathname) ? "#fff" : "#000"}
+                  />
+                </Link>
               </TouchableOpacity>
             </View>
           )}

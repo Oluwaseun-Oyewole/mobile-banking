@@ -1,12 +1,13 @@
+import { renderTabRoute } from "@/helper";
 import { useSession } from "@/hooks/useSession";
 import { Routes } from "@/routes/routes";
 import { Ionicons } from "@expo/vector-icons";
-import { Redirect, Tabs } from "expo-router";
+import { Redirect, Tabs, usePathname } from "expo-router";
 import { View } from "react-native";
 
 export default function AppLayout() {
   const { session, isLoading, currentUser } = useSession();
-
+  const pathname = usePathname();
   if (currentUser === false) {
     return <Redirect href={Routes.login} />;
   }
@@ -17,7 +18,10 @@ export default function AppLayout() {
         tabBarActiveTintColor: "white",
         tabBarShowLabel: false,
         // tabBarActiveBackgroundColor: "#3629B7",
-        tabBarStyle: { height: 70 },
+        tabBarStyle: {
+          height: 70,
+          display: `${renderTabRoute(pathname) ? "flex" : "none"}`,
+        },
       }}
       backBehavior="history"
     >
@@ -190,6 +194,24 @@ export default function AppLayout() {
         options={{
           href: null,
           title: "app_info",
+          headerShown: false,
+        }}
+      />
+
+      <Tabs.Screen
+        name="notification"
+        options={{
+          href: null,
+          title: "notification",
+          headerShown: false,
+        }}
+      />
+
+      <Tabs.Screen
+        name="[notification_details]"
+        options={{
+          href: null,
+          title: "[notification_details]",
           headerShown: false,
         }}
       />
