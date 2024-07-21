@@ -1,25 +1,24 @@
 import MainWrapper from "@/components/main/wrapper";
-import CustomPressable from "@/components/pressible";
 import { CustomText } from "@/components/text";
 import { searchArrays } from "@/helper/constants";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 const Search = () => {
   const { push } = useRouter();
   return (
-    <MainWrapper>
+    <MainWrapper backgroundColor="#fff">
       <View className="w-full flex-wrap">
         {searchArrays?.map((cards, index) => {
           return (
-            <CustomPressable
+            <TouchableOpacity
               key={index}
               onPress={() => push(cards?.link)}
-              customClassName="bg-transparent py-0"
+              className="py-2"
             >
-              <View className="mt-5 w-full flex-row justify-between px-4 items-center h-[120px] rounded-2xl bg-white">
+              <View className="w-full flex-row justify-between px-4 items-center h-[120px] rounded-2xl bg-primary4">
                 <View>
                   <CustomText
                     customClassName="text-lg"
@@ -45,7 +44,7 @@ const Search = () => {
                   />
                 </View>
               </View>
-            </CustomPressable>
+            </TouchableOpacity>
           );
         })}
       </View>
