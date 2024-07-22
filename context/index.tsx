@@ -16,6 +16,8 @@ type InitialStatesType = {
   toCurrency?: string;
   changeFromCurrencyType: (arg: string) => void;
   changeToCurrencyType: (arg: string) => void;
+  isBiometricSupported?: boolean;
+  updateBiometric: (arg: boolean) => void;
 };
 
 const initialValues: InitialStatesType = {
@@ -31,6 +33,8 @@ const initialValues: InitialStatesType = {
   toCurrency: "NGN",
   changeFromCurrencyType: () => {},
   changeToCurrencyType: () => {},
+  isBiometricSupported: false,
+  updateBiometric: () => {},
 };
 
 export const AuthContext = createContext<InitialStatesType>(initialValues);
@@ -44,19 +48,20 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const changeFromCurrencyType = (currency: string) => {
     return setFromCurrency(currency);
   };
-
+  const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const changeToCurrencyType = (currency: string) => {
     return setToCurrency(currency);
   };
-
   function updateCurrentUser() {
     setCurrentUser(true);
   }
-
   function updateIsPhoneValidity() {
     setIsPhoneValid(true);
   }
 
+  function updateBiometric(biometric: boolean) {
+    setIsBiometricSupported(biometric);
+  }
   return (
     <AuthContext.Provider
       value={{
@@ -76,6 +81,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         toCurrency,
         changeFromCurrencyType,
         changeToCurrencyType,
+        isBiometricSupported,
+        updateBiometric,
       }}
     >
       {children}

@@ -1,12 +1,14 @@
+import BiometricAuthentication from "@/components/biometric";
 import CustomButton from "@/components/button";
 import CustomInput from "@/components/input";
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
+import { useSession } from "@/hooks/useSession";
 import { Routes } from "@/routes/routes";
 import { useRouter } from "expo-router";
 import { Formik } from "formik";
-import React from "react";
-import { View } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, View } from "react-native";
 import * as Yup from "yup";
 
 const Confirm = () => {
@@ -20,12 +22,13 @@ const Confirm = () => {
     content: Yup.string().required("Content is required"),
     otp: Yup.string().required("OTP is required"),
   });
-
+  const [verification, setVerification] = useState(false);
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
     push(Routes.Home);
     resetForm({});
   };
-
+  const { isBiometricSupported } = useSession();
+  const [biometricValid, setIsBiometricValid] = useState(false);
   return (
     <MainWrapper backgroundColor="#fff">
       <View>
@@ -124,23 +127,52 @@ const Confirm = () => {
                     />
                   </View>
 
-                  <View className="py-3">
-                    <CustomInput
-                      placeholder="OTP"
-                      onChangeText={formik.handleChange("otp")}
-                      onBlur={formik.handleBlur("otp")}
-                      value={formik.values.otp}
-                      name="otp"
-                      showLabel
-                      arialLabel="Get OTP to verify transaction"
-                      arialLabelBy="Get OTP to verify transaction"
-                    />
-                  </View>
+                  {!verification && (
+                    <View className="py-3 flex-row items-center justify-between">
+                      <View className="basis-[67%]">
+                        <CustomInput
+                          placeholder="OTP"
+                          onChangeText={formik.handleChange("otp")}
+                          onBlur={formik.handleBlur("otp")}
+                          value={formik.values.otp}
+                          name="otp"
+                          showLabel
+                          arialLabel="Get OTP to verify transaction"
+                          arialLabelBy="Get OTP to verify transaction"
+                        />
+                      </View>
 
-                  <View className="pt-10">
+                      <View className="basis-[30%]">
+                        <CustomButton
+                          buttonText="Get OTP"
+                          onPress={() => {}}
+                          customClassName="text-xs"
+                        />
+                      </View>
+                    </View>
+                  )}
+                  <TouchableOpacity
+                    onPress={() => setVerification(!verification)}
+                    className="pt-1"
+                  >
+                    <CustomText
+                      customClassName="text-sm text-primary"
+                      fontFamily="PoppinsBold"
+                    >
+                      change verification
+                    </CustomText>
+                  </TouchableOpacity>
+
+                  {verification && (
+                    <BiometricAuthentication
+                      setIsBiometricValid={setIsBiometricValid}
+                    />
+                  )}
+
+                  <View className="py-10">
                     <CustomButton
                       buttonText="Confirm"
-                      isLoading={formik.isSubmitting}
+                      isLoading={formik.isSubmitting || !isBiometricSupported}
                       disabled={!formik.isValid}
                       onPress={formik.handleSubmit}
                     />

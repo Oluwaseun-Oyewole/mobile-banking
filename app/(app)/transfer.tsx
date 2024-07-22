@@ -4,6 +4,7 @@ import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
 import { beneficiaryArray, transferArray } from "@/helper/constants";
 import { Routes } from "@/routes/routes";
+import { Ionicons } from "@expo/vector-icons";
 import classNames from "classnames";
 import Checkbox from "expo-checkbox";
 import { Image } from "expo-image";
@@ -40,6 +41,8 @@ const Transfer = () => {
     setTransfers(updateTransfer);
   };
 
+  const [cardType, ,] = useState("VISA 0025563565376");
+
   const selectBeneficiary = (transferIndex: number) => {
     const updateBeneficiary = beneficiaries?.map((beneficiary, index) => ({
       ...beneficiary,
@@ -50,37 +53,30 @@ const Transfer = () => {
 
   return (
     <MainWrapper backgroundColor="#fff">
-      <View>
-        <TouchableOpacity
-          className="py-5"
-          onPress={() => transferModalRef.current?.open()}
+      <Pressable onPress={() => transferModalRef.current?.open()}>
+        <Formik
+          initialValues={{
+            cardType: "",
+          }}
+          onSubmit={onSubmit}
         >
-          <Formik
-            initialValues={{
-              cardType: "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-            validateOnMount
-          >
-            {(formik) => {
-              return (
-                <>
-                  <CustomInput
-                    placeholder="Choose account / card"
-                    onChangeText={formik.handleChange("cardType")}
-                    onBlur={formik.handleBlur("cardType")}
-                    value={formik.values.cardType}
-                    name="cardType"
-                    editable={false}
-                    selectable
-                  />
-                </>
-              );
-            }}
-          </Formik>
-        </TouchableOpacity>
-      </View>
+          {(formik) => {
+            return (
+              <>
+                <CustomInput
+                  placeholder={cardType}
+                  onChangeText={formik.handleChange("cardType")}
+                  onBlur={formik.handleBlur("cardType")}
+                  value={cardType}
+                  name="cardType"
+                  editable={false}
+                  selectable
+                />
+              </>
+            );
+          }}
+        </Formik>
+      </Pressable>
 
       <View className="pt-5">
         <CustomText
@@ -100,7 +96,7 @@ const Transfer = () => {
                 <Pressable
                   key={index}
                   className={classNames(
-                    "bg-neutral2 w-[24%] p-3 h-[140px] rounded-lg justify-center opacity-70",
+                    "bg-neutral2 w-[23%] p-3 h-[140px] rounded-lg justify-center opacity-70",
                     {
                       "bg-primary opacity-100": transfer.isSelected,
                     }
@@ -117,7 +113,7 @@ const Transfer = () => {
                     />
                   </View>
 
-                  <CustomText customClassName="text-white mt-2 w-[65%]">
+                  <CustomText customClassName="text-white mt-2 w-[70%]">
                     {transfer.transferType}
                   </CustomText>
                 </Pressable>
@@ -128,7 +124,7 @@ const Transfer = () => {
       </View>
 
       <View className="pt-14 pb-10">
-        <View className="flex-row items-center justify-between pl-2">
+        <View className="flex-row items-center justify-between pl-2 pb-3">
           <CustomText
             customClassName="text-neutral3"
             fontFamily="PoppinsMedium"
@@ -150,7 +146,6 @@ const Transfer = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 0, flex: 1 }}
         >
-          {/* <View className="flex-row gap-2 items-center"> */}
           {beneficiaries?.map((transfer, index) => {
             return (
               <Pressable
@@ -273,48 +268,30 @@ const Transfer = () => {
       >
         <TouchableOpacity onPress={() => beneficiaryRef?.current?.close()}>
           <View className="justify-end items-end p-4">
-            <CustomText fontFamily="PoppinsBold" customClassName="">
-              Close
-            </CustomText>
+            <Ionicons name="close-circle" size={27} />
           </View>
 
-          <Formik
-            initialValues={{
-              beneficiary: "",
-            }}
-            onSubmit={onSubmit}
-          >
-            {(formik) => {
-              return (
-                <>
-                  <CustomInput
-                    placeholder="Search beneficiary"
-                    onChangeText={formik.handleChange("beneficiary")}
-                    onBlur={formik.handleBlur("beneficiary")}
-                    value={formik.values.beneficiary}
-                    name="beneficiary"
-                  />
-                </>
-              );
-            }}
-          </Formik>
-        </TouchableOpacity>
-      </Modalize>
-
-      <Modalize
-        ref={transferModalRef}
-        modalStyle={{ height: 10, paddingHorizontal: 20 }}
-        overlayStyle={{ height: "auto" }}
-        modalHeight={400}
-        handlePosition="inside"
-        withReactModal
-        // withHandle={false}
-      >
-        <TouchableOpacity onPress={() => transferModalRef?.current?.close()}>
-          <View className="justify-end items-end p-4">
-            <CustomText fontFamily="PoppinsBold" customClassName="">
-              Close
-            </CustomText>
+          <View className="pt-2">
+            <Formik
+              initialValues={{
+                beneficiary: "",
+              }}
+              onSubmit={onSubmit}
+            >
+              {(formik) => {
+                return (
+                  <>
+                    <CustomInput
+                      placeholder="Search beneficiary"
+                      onChangeText={formik.handleChange("beneficiary")}
+                      onBlur={formik.handleBlur("beneficiary")}
+                      value={formik.values.beneficiary}
+                      name="beneficiary"
+                    />
+                  </>
+                );
+              }}
+            </Formik>
           </View>
         </TouchableOpacity>
       </Modalize>
