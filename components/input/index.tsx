@@ -21,6 +21,8 @@ type ICustomProps = TextInputProps & {
   showExchangeRate?: boolean;
   openModal?: () => void;
   currencyType?: String;
+  editable?: boolean;
+  selectable?: boolean;
 };
 
 const CustomInput = forwardRef(
@@ -35,6 +37,8 @@ const CustomInput = forwardRef(
       showExchangeRate,
       openModal,
       currencyType,
+      selectable,
+      editable,
       ...rest
     }: ICustomProps,
     ref
@@ -62,8 +66,10 @@ const CustomInput = forwardRef(
             aria-labelledby={arialLabelBy ?? ""}
             {...rest}
             className={classNames(
-              `${showExchangeRate ? "px-5" : "px-0"} focus:border-primary ${
-                showExchangeRate ? " w-[75%]" : " w-[90%]"
+              `${
+                showExchangeRate || selectable ? "px-5" : "px-0"
+              } focus:border-primary ${
+                showExchangeRate || selectable ? " w-[75%]" : " w-[90%]"
               }`,
               customClassName
             )}
@@ -71,6 +77,7 @@ const CustomInput = forwardRef(
             secureTextEntry={isPassword && !showPassword}
             placeholderTextColor="#CACACA"
             cursorColor="#3629B7"
+            editable={editable}
           />
           {isPassword && (
             <View
@@ -116,6 +123,22 @@ const CustomInput = forwardRef(
                     color="#898989"
                   />
                 </View>
+              </View>
+            </TouchableOpacity>
+          )}
+
+          {selectable && (
+            <TouchableOpacity
+              className="w-[25%] relative pr-2 h-full items-center justify-center"
+              onPress={openModal}
+            >
+              <View className="items-center justify-center">
+                <Ionicons name="chevron-up-outline" size={13} color="#898989" />
+                <Ionicons
+                  name="chevron-down-outline"
+                  size={13}
+                  color="#898989"
+                />
               </View>
             </TouchableOpacity>
           )}

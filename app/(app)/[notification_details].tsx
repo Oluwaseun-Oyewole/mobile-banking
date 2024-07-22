@@ -6,7 +6,6 @@ import { View } from "react-native";
 
 const NotificationDetails = () => {
   const pathname = usePathname();
-  console.log("testing pathname -- ", pathname);
   const { detail } = useLocalSearchParams();
   return (
     <MainWrapper>

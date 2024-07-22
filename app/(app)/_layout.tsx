@@ -224,6 +224,14 @@ export default function AppLayout() {
           headerShown: false,
         }}
       />
+      <Tabs.Screen
+        name="confirm"
+        options={{
+          href: null,
+          title: "confirm",
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 }

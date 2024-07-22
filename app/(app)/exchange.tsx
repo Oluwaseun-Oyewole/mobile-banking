@@ -4,11 +4,9 @@ import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
 import { CurrencyType, fromCurrencies, toCurrencies } from "@/helper/constants";
 import { useSession } from "@/hooks/useSession";
-import { Routes } from "@/routes/routes";
 import { Ionicons } from "@expo/vector-icons";
 import classNames from "classnames";
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
 import { Formik } from "formik";
 import React, { useRef, useState } from "react";
 import { Pressable, TouchableOpacity, View } from "react-native";
@@ -34,13 +32,11 @@ const Exchange = () => {
     }));
     return setToAllCurrencies(currencies);
   };
-  const { push } = useRouter();
   const validationSchema = Yup.object({
     from: Yup.number().required("Select currency"),
     to: Yup.number().required("Select currency"),
   });
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
-    push(Routes.login);
     resetForm({});
   };
   const {

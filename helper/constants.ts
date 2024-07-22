@@ -21,6 +21,7 @@ export const MainScreensTitle: Record<string, string> = {
   password_change: "Change Password",
   notification: "Notification",
   transfer: "Transfer",
+  confirm: "Confirm",
 };
 
 export const HomeCardArrays = [
@@ -238,59 +239,75 @@ export const exchangeRateArray: ExchangeType[] = [
   },
 ];
 
-type LanguageType = {
+export type LanguageType = {
   imageURI: string;
   countryName: string;
+  isSelected: boolean;
 };
 
 export const languagesArray: LanguageType[] = [
   {
     imageURI: require("@/assets/images/CN.svg"),
     countryName: "China",
+    isSelected: false,
   },
 
   {
     imageURI: require("@/assets/images/FR.svg"),
     countryName: "France",
+    isSelected: false,
   },
 
   {
     imageURI: require("@/assets/images/KR.svg"),
     countryName: "Korea",
+    isSelected: false,
   },
 
   {
+    imageURI: require("@/assets/images/EN.svg"),
+    countryName: "Britain",
+    isSelected: true,
+  },
+  {
     imageURI: require("@/assets/images/NI.svg"),
     countryName: "Nicaragua",
+    isSelected: false,
   },
 
   {
     imageURI: require("@/assets/images/PT.svg"),
     countryName: "Portugal",
+    isSelected: false,
   },
   {
     imageURI: require("@/assets/images/CN.svg"),
     countryName: "China",
+    isSelected: false,
   },
 
   {
     imageURI: require("@/assets/images/FR.svg"),
     countryName: "France",
+    isSelected: false,
   },
 
   {
     imageURI: require("@/assets/images/KR.svg"),
     countryName: "Korea",
+    isSelected: false,
   },
 
   {
     imageURI: require("@/assets/images/NI.svg"),
     countryName: "Nicaragua",
+    isSelected: false,
   },
 
   {
     imageURI: require("@/assets/images/PT.svg"),
     countryName: "Portugal",
+    isSelected: false,
   },
 ];
 
@@ -373,4 +390,65 @@ export const toCurrencies: CurrencyType[] = [
     isSelected: false,
   },
   { currencyCode: "MRU UM", currency: "Ouguiya", isSelected: false },
+];
+
+export const transferArray = [
+  {
+    transferType: "Transfer via card number",
+    isSelected: true,
+    imagePath: require("@/assets/images/card.svg"),
+  },
+  {
+    transferType: "Transfer to the same bank",
+    isSelected: false,
+    imagePath: require("@/assets/images/user.svg"),
+  },
+  {
+    transferType: "Transfer to another bank",
+    isSelected: false,
+    imagePath: require("@/assets/images/house.svg"),
+  },
+  {
+    transferType: "Transfer via sort code",
+    isSelected: false,
+    imagePath: require("@/assets/images/card.svg"),
+  },
+];
+
+export const beneficiaryArray = [
+  {
+    name: "Emma",
+    isSelected: true,
+    imagePath: require("@/assets/images/user1.svg"),
+  },
+  {
+    name: "Mike",
+    isSelected: false,
+    imagePath: require("@/assets/images/user2.svg"),
+  },
+  {
+    name: "Yemi",
+    isSelected: false,
+    imagePath: require("@/assets/images/user1.svg"),
+  },
+  {
+    name: "Dolapo",
+    isSelected: false,
+    imagePath: require("@/assets/images/user2.svg"),
+  },
+  {
+    name: "Yussuf",
+    isSelected: false,
+    imagePath: require("@/assets/images/user2.svg"),
+  },
+  {
+    name: "Daniella",
+    isSelected: false,
+    imagePath: require("@/assets/images/user1.svg"),
+  },
+  {
+    name: "James",
+    isSelected: false,
+    imagePath: require("@/assets/images/user2.svg"),
+  },
 ];

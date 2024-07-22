@@ -1,25 +1,28 @@
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
-import { languagesArray } from "@/helper/constants";
+import { LanguageType, languagesArray } from "@/helper/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import React, { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 
 const Languages = () => {
-  const [selected, setSelected] = useState(false);
-
-  const onPress = () => {
-    setSelected(!selected);
+  const [languages, setLanguages] = useState<LanguageType[]>(languagesArray);
+  const selectedLanguage = (languageIndex: number) => {
+    const selectedLanguage = languages?.map((language, index) => ({
+      ...language,
+      isSelected: index === languageIndex ? !language.isSelected : false,
+    }));
+    setLanguages(selectedLanguage);
   };
   return (
     <MainWrapper backgroundColor="#fff">
       <View className="pt-3">
-        {languagesArray?.map((language, index) => {
+        {languages?.map((language, index) => {
           return (
             <View key={index} className="pb-4">
               <View className="flex-row items-center justify-between border-b-2 border-gray-100 pb-3">
-                <TouchableOpacity onPress={onPress}>
+                <TouchableOpacity onPress={() => selectedLanguage(index)}>
                   <View className="flex-row items-center">
                     <Image
                       className="w-[40px] h-[30px]"
@@ -37,7 +40,7 @@ const Languages = () => {
                   </View>
                 </TouchableOpacity>
 
-                {selected && (
+                {language?.isSelected && (
                   <Ionicons
                     name="checkmark"
                     size={20}

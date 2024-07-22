@@ -23,4 +23,5 @@ export const enum Routes {
   credit_card = "credit_card",
   transaction_report = "transaction_report",
   beneficiary = "beneficiary",
+  confirm = "confirm",
 }
