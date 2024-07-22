@@ -215,6 +215,15 @@ export default function AppLayout() {
           headerShown: false,
         }}
       />
+
+      <Tabs.Screen
+        name="transfer"
+        options={{
+          href: null,
+          title: "transfer",
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 }

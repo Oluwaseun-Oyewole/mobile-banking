@@ -20,48 +20,58 @@ export const MainScreensTitle: Record<string, string> = {
   app_info: "App Information",
   password_change: "Change Password",
   notification: "Notification",
+  transfer: "Transfer",
 };
 
 export const HomeCardArrays = [
   {
     title: "Account and Card",
     imagePath: require("@/assets/images/account.png"),
+    link: Routes.account,
   },
   {
     title: "Transfer",
     imagePath: require("@/assets/images/transfer.png"),
+    link: Routes.transfer,
   },
   {
     title: "Withdrawal",
     imagePath: require("@/assets/images/withdrawal.png"),
+    link: Routes.withdrawal,
   },
   {
     title: "Mobile prepaid",
     imagePath: require("@/assets/images/prepaid.png"),
+    link: Routes.prepaid,
   },
   {
     title: "Pay the bill",
     imagePath: require("@/assets/images/receipt.png"),
+    link: Routes.pay_bills,
   },
 
   {
     title: "Save online",
     imagePath: require("@/assets/images/save.png"),
+    link: Routes.save_online,
   },
 
   {
     title: "Credit card",
     imagePath: require("@/assets/images/credit-card.png"),
+    link: Routes.credit_card,
   },
 
   {
     title: "Transaction report",
     imagePath: require("@/assets/images/transactions.png"),
+    link: Routes.transaction_report,
   },
 
   {
     title: "Beneficiary",
     imagePath: require("@/assets/images/beneficiary.png"),
+    link: Routes.beneficiary,
   },
 ];
 
@@ -319,4 +329,48 @@ export const notification = [
   { title: "Savings", details: "Short details about savings" },
   { title: "Discount", details: "Short details about discount" },
   { title: "Complaint", details: "Short details about complaint resolved" },
+];
+
+export type CurrencyType = {
+  currencyCode: string;
+  currency: string;
+  isSelected: boolean;
+};
+export const fromCurrencies: CurrencyType[] = [
+  { currencyCode: "VND #", currency: "Viet Nam Dong", isSelected: false },
+  { currencyCode: "HK$", currency: "Hong Kong Dollar", isSelected: false },
+  { currencyCode: "USD $", currency: "Dollar", isSelected: true },
+  { currencyCode: "NGN ₦", currency: "Naira", isSelected: false },
+  { currencyCode: "EUR €", currency: "Euro", isSelected: false },
+  { currencyCode: "ARS $", currency: "Peso", isSelected: false },
+  { currencyCode: "TND د.ت", currency: "Tunisian dinar", isSelected: false },
+  { currencyCode: "UGX USh", currency: "Ugandan shilling", isSelected: false },
+  { currencyCode: "LAK ₭", currency: "Lao kip", isSelected: false },
+  { currencyCode: "KRW ₩", currency: "South Korean won", isSelected: false },
+  { currencyCode: "CNY /元", currency: "Chinese yuan", isSelected: false },
+  {
+    currencyCode: "HKD $ / HK$ / “元”",
+    currency: "Hong Kong dollar",
+    isSelected: false,
+  },
+  { currencyCode: "MRU UM", currency: "Ouguiya", isSelected: false },
+];
+export const toCurrencies: CurrencyType[] = [
+  { currencyCode: "VND #", currency: "Viet Nam Dong", isSelected: false },
+  { currencyCode: "HK$", currency: "Hong Kong Dollar", isSelected: false },
+  { currencyCode: "USD $", currency: "Dollar", isSelected: true },
+  { currencyCode: "NGN ₦", currency: "Naira", isSelected: false },
+  { currencyCode: "EUR €", currency: "Euro", isSelected: false },
+  { currencyCode: "ARS $", currency: "Peso", isSelected: false },
+  { currencyCode: "TND د.ت", currency: "Tunisian dinar", isSelected: false },
+  { currencyCode: "UGX USh", currency: "Ugandan shilling", isSelected: false },
+  { currencyCode: "LAK ₭", currency: "Lao kip", isSelected: false },
+  { currencyCode: "KRW ₩", currency: "South Korean won", isSelected: false },
+  { currencyCode: "CNY /元", currency: "Chinese yuan", isSelected: false },
+  {
+    currencyCode: "HKD $ / HK$ / “元”",
+    currency: "Hong Kong dollar",
+    isSelected: false,
+  },
+  { currencyCode: "MRU UM", currency: "Ouguiya", isSelected: false },
 ];

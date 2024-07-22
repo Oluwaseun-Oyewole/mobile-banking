@@ -3,9 +3,11 @@ import { CustomText } from "@/components/text";
 import { formatCurrency } from "@/helper";
 import { HomeCardArrays, cardDetails } from "@/helper/constants";
 import { Image } from "expo-image";
-import { View } from "react-native";
+import { useRouter } from "expo-router";
+import { TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
+  const { push } = useRouter();
   return (
     <MainWrapper>
       <View className="">
@@ -34,7 +36,7 @@ export default function HomeScreen() {
           <View className="items-end justify-end p-6 absolute bottom-0 left-[250px]">
             <CustomText
               customClassName="text-white text-2xl"
-              fontFamily="poppinsBold"
+              fontFamily="PoppinsBold"
             >
               {cardDetails?.cardType}
             </CustomText>
@@ -67,7 +69,7 @@ export default function HomeScreen() {
           <View className="items-end justify-end p-6 absolute bottom-0 left-[250px]">
             <CustomText
               customClassName="text-white text-2xl"
-              fontFamily="poppinsBold"
+              fontFamily="PoppinsBold"
             >
               {cardDetails?.cardType}
             </CustomText>
@@ -79,9 +81,10 @@ export default function HomeScreen() {
           <View className="w-full flex-row flex-wrap gap-2">
             {HomeCardArrays?.map((cards, index) => {
               return (
-                <View
+                <TouchableOpacity
                   key={index}
                   className="items-center justify-center flex-3 w-[31%] py-4 rounded-xl bg-white"
+                  onPress={() => push(cards?.link!)}
                 >
                   <View className="h-[30px]">
                     <Image
@@ -98,7 +101,7 @@ export default function HomeScreen() {
                   >
                     {cards?.title}
                   </CustomText>
-                </View>
+                </TouchableOpacity>
               );
             })}
           </View>

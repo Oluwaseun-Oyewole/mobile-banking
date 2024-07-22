@@ -12,6 +12,10 @@ type InitialStatesType = {
   updateCurrentUser: () => void;
   isPhoneValid?: boolean;
   updateIsPhoneValidity: VoidFunction;
+  fromCurrency?: string;
+  toCurrency?: string;
+  changeFromCurrencyType: (arg: string) => void;
+  changeToCurrencyType: (arg: string) => void;
 };
 
 const initialValues: InitialStatesType = {
@@ -23,6 +27,10 @@ const initialValues: InitialStatesType = {
   updateCurrentUser: () => {},
   isPhoneValid: false,
   updateIsPhoneValidity: () => {},
+  fromCurrency: "USD",
+  toCurrency: "NGN",
+  changeFromCurrencyType: () => {},
+  changeToCurrencyType: () => {},
 };
 
 export const AuthContext = createContext<InitialStatesType>(initialValues);
@@ -31,6 +39,15 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [[isLoading, session], setSession] = useStorageState("session");
   const [currentUser, setCurrentUser] = useState(true);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
+  const [fromCurrency, setFromCurrency] = useState("USD");
+  const [toCurrency, setToCurrency] = useState("NGN");
+  const changeFromCurrencyType = (currency: string) => {
+    return setFromCurrency(currency);
+  };
+
+  const changeToCurrencyType = (currency: string) => {
+    return setToCurrency(currency);
+  };
 
   function updateCurrentUser() {
     setCurrentUser(true);
@@ -55,6 +72,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         updateCurrentUser,
         isPhoneValid,
         updateIsPhoneValidity,
+        fromCurrency,
+        toCurrency,
+        changeFromCurrencyType,
+        changeToCurrencyType,
       }}
     >
       {children}
