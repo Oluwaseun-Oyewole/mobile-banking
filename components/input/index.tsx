@@ -23,6 +23,7 @@ type ICustomProps = TextInputProps & {
   currencyType?: String;
   editable?: boolean;
   selectable?: boolean;
+  showBank?: boolean;
 };
 
 const CustomInput = forwardRef(
@@ -39,6 +40,7 @@ const CustomInput = forwardRef(
       currencyType,
       selectable,
       editable,
+      showBank,
       ...rest
     }: ICustomProps,
     ref
@@ -67,9 +69,11 @@ const CustomInput = forwardRef(
             {...rest}
             className={classNames(
               `${
-                showExchangeRate || selectable ? "px-5" : "px-0"
+                showExchangeRate || selectable || showBank ? "px-5" : "px-0"
               } focus:border-primary ${
-                showExchangeRate || selectable ? " w-[75%]" : " w-[90%]"
+                showExchangeRate || selectable || showBank
+                  ? " w-[75%]"
+                  : " w-[90%]"
               }`,
               customClassName
             )}
@@ -128,6 +132,22 @@ const CustomInput = forwardRef(
           )}
 
           {selectable && (
+            <TouchableOpacity
+              className="w-[25%] relative pr-2 h-full items-center justify-center"
+              onPress={openModal}
+            >
+              <View className="items-center justify-center">
+                <Ionicons name="chevron-up-outline" size={13} color="#898989" />
+                <Ionicons
+                  name="chevron-down-outline"
+                  size={13}
+                  color="#898989"
+                />
+              </View>
+            </TouchableOpacity>
+          )}
+
+          {showBank && (
             <TouchableOpacity
               className="w-[25%] relative pr-2 h-full items-center justify-center"
               onPress={openModal}

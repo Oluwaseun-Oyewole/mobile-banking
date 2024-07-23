@@ -3,7 +3,6 @@ import CustomButton from "@/components/button";
 import CustomInput from "@/components/input";
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
-import { useSession } from "@/hooks/useSession";
 import { Routes } from "@/routes/routes";
 import { useRouter } from "expo-router";
 import { Formik } from "formik";
@@ -18,17 +17,24 @@ const Confirm = () => {
     receiverName: Yup.string().required("Receiver's name is required"),
     amount: Yup.number().required("Amount is required"),
     cardNumber: Yup.number().required("Card number is required"),
-    transaction_fee: Yup.number().required("Transaction fee is required"),
     content: Yup.string().required("Content is required"),
-    otp: Yup.string().required("OTP is required"),
   });
   const [verification, setVerification] = useState(false);
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
     push(Routes.Home);
     resetForm({});
+    setIsBiometricValid(false);
   };
-  const { isBiometricSupported } = useSession();
-  const [biometricValid, setIsBiometricValid] = useState(false);
+  const [isBiometricValid, setIsBiometricValid] = useState(false);
+  const [isAuthValid, setIsAuthValid] = useState(false);
+
+  const checkAuthMethod = (verificationType: "OTP" | "Bio") => {
+    if (verificationType === "OTP" || verificationType === "Bio") {
+      setIsAuthValid(true);
+    }
+    return false;
+  };
+
   return (
     <MainWrapper backgroundColor="#fff">
       <View>
@@ -43,7 +49,6 @@ const Confirm = () => {
               cardNumber: "",
               content: "",
               amount: "",
-              otp: "",
             }}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
@@ -85,6 +90,7 @@ const Confirm = () => {
                       showLabel
                       arialLabel="Card number"
                       arialLabelBy="Card number"
+                      keyboardType="numeric"
                     />
                   </View>
                   <View className="py-3">
@@ -98,6 +104,7 @@ const Confirm = () => {
                       arialLabel="Transaction fee"
                       arialLabelBy="Transaction fee"
                       editable={false}
+                      keyboardType="numeric"
                     />
                   </View>
 
@@ -124,6 +131,7 @@ const Confirm = () => {
                       showLabel
                       arialLabel="amount"
                       arialLabelBy="Amount"
+                      keyboardType="numeric"
                     />
                   </View>
 
@@ -134,7 +142,7 @@ const Confirm = () => {
                           placeholder="OTP"
                           onChangeText={formik.handleChange("otp")}
                           onBlur={formik.handleBlur("otp")}
-                          value={formik.values.otp}
+                          //   value={formik.values.otp}
                           name="otp"
                           showLabel
                           arialLabel="Get OTP to verify transaction"
@@ -142,7 +150,7 @@ const Confirm = () => {
                         />
                       </View>
 
-                      <View className="basis-[30%]">
+                      <View className="basis-[30%] mt-6">
                         <CustomButton
                           buttonText="Get OTP"
                           onPress={() => {}}
@@ -153,7 +161,7 @@ const Confirm = () => {
                   )}
                   <TouchableOpacity
                     onPress={() => setVerification(!verification)}
-                    className="pt-1"
+                    className=""
                   >
                     <CustomText
                       customClassName="text-sm text-primary"
@@ -172,8 +180,8 @@ const Confirm = () => {
                   <View className="py-10">
                     <CustomButton
                       buttonText="Confirm"
-                      isLoading={formik.isSubmitting || !isBiometricSupported}
-                      disabled={!formik.isValid}
+                      isLoading={formik.isSubmitting}
+                      disabled={!formik.isValid || !isBiometricValid}
                       onPress={formik.handleSubmit}
                     />
                   </View>

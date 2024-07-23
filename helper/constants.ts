@@ -398,20 +398,16 @@ export const transferArray = [
     isSelected: true,
     imagePath: require("@/assets/images/card.svg"),
   },
-  {
-    transferType: "Transfer to the same bank",
-    isSelected: false,
-    imagePath: require("@/assets/images/user.svg"),
-  },
+
   {
     transferType: "Transfer to another bank",
     isSelected: false,
     imagePath: require("@/assets/images/house.svg"),
   },
   {
-    transferType: "Transfer via sort code",
+    transferType: "Transfer to the same bank",
     isSelected: false,
-    imagePath: require("@/assets/images/card.svg"),
+    imagePath: require("@/assets/images/user.svg"),
   },
 ];
 
@@ -451,4 +447,21 @@ export const beneficiaryArray = [
     isSelected: false,
     imagePath: require("@/assets/images/user2.svg"),
   },
+];
+
+export const banksArray = [
+  { name: "Fifth Third", isSelected: false },
+  { name: "Bank of the west", isSelected: false },
+  { name: "Wells Fargo", isSelected: false },
+  { name: "JP Morgan Chase", isSelected: false },
+  { name: "US bank", isSelected: false },
+  { name: "City bank", isSelected: true },
+  { name: "Ame Express", isSelected: false },
+];
+
+export const branchArray = [
+  { name: "Branch One", isSelected: false },
+  { name: "Branch Two", isSelected: false },
+  { name: "Branch Three", isSelected: true },
+  { name: "Branch Four", isSelected: false },
 ];

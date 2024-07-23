@@ -44,6 +44,12 @@ const BiometricAuthentication = ({
       push(route!);
       updateCurrentUser();
       setIsBiometricValid(true);
+
+      if (!route) {
+        Alert.alert("Authentication success", "Please continue", [
+          { text: "OK" },
+        ]);
+      }
     } else {
       Alert.alert("Authentication failed", "Please try again.", [
         { text: "OK" },
