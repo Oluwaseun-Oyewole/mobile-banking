@@ -295,7 +295,7 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
           name: "",
           amount: "",
           cardNumber: "",
-          content: "",
+          note: "",
         }}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
@@ -305,7 +305,7 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
           return (
             <>
               <CustomInput
-                placeholder="Name"
+                placeholder="Namess"
                 onChangeText={formik.handleChange("name")}
                 onBlur={formik.handleBlur("name")}
                 value={formik.values.name}
@@ -334,10 +334,10 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
               <View className="py-6">
                 <CustomInput
                   placeholder="Content"
-                  onChangeText={formik.handleChange("content")}
-                  onBlur={formik.handleBlur("content")}
-                  value={formik.values.content}
-                  name="content"
+                  onChangeText={formik.handleChange("note")}
+                  onBlur={formik.handleBlur("note")}
+                  value={formik.values.note}
+                  name="note"
                 />
               </View>
 

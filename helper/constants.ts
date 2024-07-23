@@ -23,6 +23,7 @@ export const MainScreensTitle: Record<string, string> = {
   transfer: "Transfer",
   confirm: "Confirm",
   transfer_success: "Confirm",
+  transaction_report: "Transaction Report",
 };
 
 export const HomeCardArrays = [

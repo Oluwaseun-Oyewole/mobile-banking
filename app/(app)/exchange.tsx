@@ -128,16 +128,17 @@ const Exchange = () => {
         withReactModal
         withHandle={false}
         velocity={0.5}
+        modalHeight={600}
       >
         <Pressable onPress={() => fromCurrencyRef?.current?.close()}>
           <View className="justify-end items-end py-4 px-8">
             <Ionicons name="close-circle-outline" size={30} />
           </View>
           <View className="px-8">
-            <CustomText customClassName="text-[20px]" fontFamily="PoppinsBold">
+            <CustomText customClassName="text-[15px]" fontFamily="PoppinsBold">
               Select the currency
             </CustomText>
-            <View>
+            <View className="pb-5 pt-2">
               {fromAllCurrencies?.map((currency, index) => {
                 return (
                   <TouchableOpacity
@@ -183,16 +184,17 @@ const Exchange = () => {
         withReactModal
         withHandle={false}
         velocity={0.5}
+        modalHeight={600}
       >
         <Pressable onPress={() => toCurrencyRef?.current?.close()}>
           <View className="justify-end items-end py-4 px-8">
             <Ionicons name="close-circle-outline" size={30} />
           </View>
           <View className="px-8">
-            <CustomText customClassName="text-[20px]" fontFamily="PoppinsBold">
+            <CustomText customClassName="text-[15px]" fontFamily="PoppinsBold">
               Select (to) currency
             </CustomText>
-            <View>
+            <View className="pt-2 pb-5">
               {toAllCurrencies?.map((currency, index) => {
                 return (
                   <View
@@ -205,7 +207,7 @@ const Exchange = () => {
                         selectToCurrency(index);
                       }}
                       className={classNames(
-                        "flex-row justify-between items-center py-3 px-3",
+                        "flex-row justify-between items-center py-3",
                         {
                           "bg-gray-100 w-full": currency.isSelected,
                         }

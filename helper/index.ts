@@ -5,7 +5,8 @@ export function renderRouteBoolean(pathname: string) {
     pathname === "/login" ||
     pathname === "/register" ||
     pathname === "/" ||
-    pathname === "/settings"
+    pathname === "/settings" ||
+    pathname === "/transaction_report"
   )
     return true;
   return false;

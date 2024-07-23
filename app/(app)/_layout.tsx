@@ -241,6 +241,15 @@ export default function AppLayout() {
           headerShown: false,
         }}
       />
+
+      <Tabs.Screen
+        name="transaction_report"
+        options={{
+          href: null,
+          title: "confirm",
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 }

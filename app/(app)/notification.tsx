@@ -8,11 +8,14 @@ import { TouchableOpacity, View } from "react-native";
 
 const Notification = () => {
   return (
-    <MainWrapper>
-      <View className="mt-3">
+    <MainWrapper backgroundColor="#fff">
+      <View>
         {notification?.map((not, index) => {
           return (
-            <View className="bg-gray-200 w-full px-3 py-4 rounded-lg flex-row justify-between mt-4">
+            <View
+              className="bg-gray-50 w-full px-3 py-4 rounded-lg flex-row justify-between mt-3"
+              key={index}
+            >
               <View className="flex-row items-center">
                 <Ionicons name="notifications" color="#3629B7" size={25} />
                 <CustomText customClassName="pl-2">{not.title}</CustomText>
