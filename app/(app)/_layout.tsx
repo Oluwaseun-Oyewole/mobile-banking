@@ -237,7 +237,7 @@ export default function AppLayout() {
         name="transfer_success"
         options={{
           href: null,
-          title: "confirm",
+          title: "transfer_success",
           headerShown: false,
         }}
       />
@@ -246,7 +246,23 @@ export default function AppLayout() {
         name="transaction_report"
         options={{
           href: null,
-          title: "confirm",
+          title: "transaction_report",
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="beneficiary"
+        options={{
+          href: null,
+          title: "beneficiary",
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="withdrawal"
+        options={{
+          href: null,
+          title: "withdrawal",
           headerShown: false,
         }}
       />

@@ -24,6 +24,8 @@ export const MainScreensTitle: Record<string, string> = {
   confirm: "Confirm",
   transfer_success: "Confirm",
   transaction_report: "Transaction Report",
+  beneficiary: "Beneficiary",
+  withdrawal: "Withdrawal",
 };
 
 export const HomeCardArrays = [
