@@ -7,7 +7,7 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { View } from "react-native";
 
-const ChangePassword = () => {
+const PasswordSuccess = () => {
   const { push } = useRouter();
   return (
     <AuthWrapper backgroundColor="#fff">
@@ -36,4 +36,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default PasswordSuccess;

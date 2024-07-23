@@ -168,11 +168,7 @@ const Exchange = () => {
                     </View>
 
                     {currency.isSelected && (
-                      <Ionicons
-                        name="checkmark-done"
-                        size={20}
-                        color="#3629B7"
-                      />
+                      <Ionicons name="checkmark" size={20} color="#3629B7" />
                     )}
                   </TouchableOpacity>
                 );
@@ -234,11 +230,7 @@ const Exchange = () => {
                         </CustomText>
                       </View>
                       {currency.isSelected && (
-                        <Ionicons
-                          name="checkmark-done"
-                          size={20}
-                          color="#3629B7"
-                        />
+                        <Ionicons name="checkmark" size={20} color="#3629B7" />
                       )}
                     </TouchableOpacity>
                   </View>

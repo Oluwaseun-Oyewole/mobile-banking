@@ -22,6 +22,7 @@ export const MainScreensTitle: Record<string, string> = {
   notification: "Notification",
   transfer: "Transfer",
   confirm: "Confirm",
+  transfer_success: "Confirm",
 };
 
 export const HomeCardArrays = [

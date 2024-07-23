@@ -232,6 +232,15 @@ export default function AppLayout() {
           headerShown: false,
         }}
       />
+
+      <Tabs.Screen
+        name="transfer_success"
+        options={{
+          href: null,
+          title: "confirm",
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 }

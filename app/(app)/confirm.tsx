@@ -21,19 +21,12 @@ const Confirm = () => {
   });
   const [verification, setVerification] = useState(false);
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
-    push(Routes.Home);
+    push(Routes.transfer_success);
     resetForm({});
     setIsBiometricValid(false);
   };
   const [isBiometricValid, setIsBiometricValid] = useState(false);
-  const [isAuthValid, setIsAuthValid] = useState(false);
-
-  const checkAuthMethod = (verificationType: "OTP" | "Bio") => {
-    if (verificationType === "OTP" || verificationType === "Bio") {
-      setIsAuthValid(true);
-    }
-    return false;
-  };
+  const [otp, setOtp] = useState("");
 
   return (
     <MainWrapper backgroundColor="#fff">
@@ -58,16 +51,16 @@ const Confirm = () => {
               return (
                 <>
                   <CustomInput
-                    placeholder="Sender"
+                    placeholder="Sender's name"
                     onChangeText={formik.handleChange("sender")}
                     onBlur={formik.handleBlur("sender")}
                     value={formik.values.sender}
                     name="sender"
                     showLabel
-                    arialLabel="Label for sender"
-                    arialLabelBy="Sender"
+                    arialLabel="Label for from"
+                    arialLabelBy="From"
                   />
-                  <View className="py-2">
+                  <View className="py-5">
                     <CustomInput
                       placeholder="Receiver's name"
                       onChangeText={formik.handleChange("receiverName")}
@@ -93,7 +86,7 @@ const Confirm = () => {
                       keyboardType="numeric"
                     />
                   </View>
-                  <View className="py-3">
+                  <View className="py-5">
                     <CustomInput
                       placeholder="Transaction fee"
                       onChangeText={formik.handleChange("transaction_fee")}
@@ -108,7 +101,7 @@ const Confirm = () => {
                     />
                   </View>
 
-                  <View className="py-3">
+                  <View className="">
                     <CustomInput
                       placeholder="Content"
                       onChangeText={formik.handleChange("content")}
@@ -121,7 +114,7 @@ const Confirm = () => {
                     />
                   </View>
 
-                  <View className="py-3">
+                  <View className="py-5">
                     <CustomInput
                       placeholder="Amount"
                       onChangeText={formik.handleChange("amount")}
@@ -140,9 +133,10 @@ const Confirm = () => {
                       <View className="basis-[67%]">
                         <CustomInput
                           placeholder="OTP"
-                          onChangeText={formik.handleChange("otp")}
-                          onBlur={formik.handleBlur("otp")}
-                          //   value={formik.values.otp}
+                          onChangeText={(e) => {
+                            setOtp(e);
+                          }}
+                          value={otp}
                           name="otp"
                           showLabel
                           arialLabel="Get OTP to verify transaction"
@@ -161,14 +155,22 @@ const Confirm = () => {
                   )}
                   <TouchableOpacity
                     onPress={() => setVerification(!verification)}
-                    className=""
                   >
-                    <CustomText
-                      customClassName="text-sm text-primary"
-                      fontFamily="PoppinsBold"
-                    >
-                      change verification
-                    </CustomText>
+                    {!verification ? (
+                      <CustomText
+                        customClassName="text-xs text-primary"
+                        fontFamily="PoppinsMedium"
+                      >
+                        Use Biometric
+                      </CustomText>
+                    ) : (
+                      <CustomText
+                        customClassName="text-xs text-primary"
+                        fontFamily="PoppinsMedium"
+                      >
+                        Use OTP
+                      </CustomText>
+                    )}
                   </TouchableOpacity>
 
                   {verification && (
@@ -181,7 +183,7 @@ const Confirm = () => {
                     <CustomButton
                       buttonText="Confirm"
                       isLoading={formik.isSubmitting}
-                      disabled={!formik.isValid || !isBiometricValid}
+                      disabled={!formik.isValid}
                       onPress={formik.handleSubmit}
                     />
                   </View>

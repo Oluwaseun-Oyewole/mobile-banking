@@ -121,6 +121,7 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
                       keyboardType="numeric"
                     />
                   </View>
+
                   <CustomInput
                     placeholder="Card number"
                     onChangeText={formik.handleChange("amount")}
@@ -135,30 +136,18 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
 
                   <View className="py-7">
                     <CustomInput
-                      placeholder="Card number"
-                      onChangeText={formik.handleChange("amount")}
-                      onBlur={formik.handleBlur("amount")}
-                      value={formik.values.amount}
-                      name="amount"
-                      arialLabel="Label for choose amount"
-                      arialLabelBy="Amount"
+                      placeholder="From Jimmy"
+                      onChangeText={formik.handleChange("note")}
+                      onBlur={formik.handleBlur("note")}
+                      value={formik.values.note}
+                      name="note"
+                      arialLabel="Label for choose note"
+                      arialLabelBy="Note"
                       showLabel
-                      keyboardType="numeric"
                     />
                   </View>
 
-                  <CustomInput
-                    placeholder="From Jimmy"
-                    onChangeText={formik.handleChange("note")}
-                    onBlur={formik.handleBlur("note")}
-                    value={formik.values.note}
-                    name="note"
-                    arialLabel="Label for choose note"
-                    arialLabelBy="Note"
-                    showLabel
-                  />
-
-                  <View className="py-7 flex-row items-start gap-2">
+                  <View className=" flex-row items-start gap-2">
                     <View>
                       <Checkbox
                         className="font-light border-red-500 border-2"

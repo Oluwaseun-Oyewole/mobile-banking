@@ -72,7 +72,7 @@ const CustomInput = forwardRef(
                 showExchangeRate || selectable || showBank ? "px-5" : "px-0"
               } focus:border-primary ${
                 showExchangeRate || selectable || showBank
-                  ? " w-[75%]"
+                  ? " w-[75%] text-black"
                   : " w-[90%]"
               }`,
               customClassName
