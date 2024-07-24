@@ -13,10 +13,10 @@ export function renderRouteBoolean(pathname: string) {
 }
 
 export function formatCurrency(
-  amount: number,
+  amount: number | string,
   currencySymbol: string = "$"
 ): string {
-  const roundedAmount = Math.round(amount * 100) / 100;
+  const roundedAmount = Math.round(Number(amount) * 100) / 100;
   const [integerPart, fractionalPart] = roundedAmount.toFixed(2).split(".");
   const integerWithCommas = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const formattedCurrency = `${currencySymbol}${integerWithCommas}.${fractionalPart}`;

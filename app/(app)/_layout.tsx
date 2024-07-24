@@ -5,11 +5,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { Redirect, Tabs, usePathname } from "expo-router";
 import { View } from "react-native";
 
-export default function AppLayout() {
+function AppLayout() {
   const { session, isLoading, currentUser } = useSession();
   const pathname = usePathname();
   if (currentUser === false) {
-    return <Redirect href={Routes.login} />;
+    return <Redirect href={Routes.Home} />;
   }
 
   return (
@@ -269,3 +269,5 @@ export default function AppLayout() {
     </Tabs>
   );
 }
+
+export default AppLayout;
