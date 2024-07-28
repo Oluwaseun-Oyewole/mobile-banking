@@ -12,13 +12,13 @@ const Account = () => {
   const tabs = [
     {
       title: "Account",
-      index: 1,
+      index: 0,
       component: <AccountComponent />,
       styles: { bg: "#3629B7" },
     },
     {
       title: "Card",
-      index: 2,
+      index: 1,
       component: <CardComponent />,
       styles: { bg: "#F2F1F9", color: "#000" },
     },
@@ -38,7 +38,11 @@ const Account = () => {
               >
                 <CustomButton
                   buttonText={tab.title}
-                  customClassName={`${currentIndex} bg-[${tab.styles.bg}]`}
+                  customClassName={`${
+                    currentIndex === tab.index
+                      ? "bg-primary"
+                      : "bg-gray-400 text-black"
+                  }`}
                 />
               </TouchableOpacity>
             </View>

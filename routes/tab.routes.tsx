@@ -57,6 +57,9 @@ export const subRoutes = [
     routeTitle: "transfer_success",
   },
   {
+    routeTitle: "withdrawal_success",
+  },
+  {
     routeTitle: "transaction_report",
   },
   {

@@ -359,6 +359,14 @@ export type CurrencyType = {
   currency: string;
   isSelected: boolean;
 };
+
+export const allAccounts = [
+  { id: 0, account: "1212 45454 5544 3345" },
+  { id: 1, account: "8783 6563 8783 6674" },
+  { id: 2, account: "2345 7665 8983 6563" },
+  { id: 3, account: "3452 7673 8903 6763" },
+  { id: 4, account: "2445 7652 8738 5636" },
+];
 export const fromCurrencies: CurrencyType[] = [
   { currencyCode: "VND #", currency: "Viet Nam Dong", isSelected: false },
   { currencyCode: "HK$", currency: "Hong Kong Dollar", isSelected: false },

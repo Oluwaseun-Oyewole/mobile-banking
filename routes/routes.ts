@@ -25,4 +25,5 @@ export const enum Routes {
   beneficiary = "beneficiary",
   confirm = "confirm",
   transfer_success = "transfer_success",
+  withdrawal_success = "withdrawal_success",
 }

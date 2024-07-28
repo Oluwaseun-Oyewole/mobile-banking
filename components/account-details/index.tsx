@@ -21,7 +21,7 @@ export const AccountComponent = () => {
           />
         </View>
         <CustomText
-          customClassName="pt-5 text-primary"
+          customClassName="pt-6 text-primary"
           fontFamily="PoppinsBold"
         >
           Dolapo Popola
@@ -36,20 +36,20 @@ export const AccountComponent = () => {
           >
             <View className="flex-row justify-between items-center">
               <CustomText
-                customClassName="text-[16px]"
-                fontFamily="PoppinsBold"
+                customClassName="text-[17px]"
+                fontFamily="PoppinsMedium"
               >
                 {account.title}
               </CustomText>
               <CustomText
-                customClassName="text-[16px]"
-                fontFamily="PoppinsBold"
+                customClassName="text-[15px]"
+                fontFamily="PoppinsMedium"
               >
                 {account.accountNumber}
               </CustomText>
             </View>
 
-            <View className="flex-row justify-between items-center py-1">
+            <View className="flex-row justify-between items-center py-2">
               <CustomText
                 customClassName="text-gray-500"
                 fontFamily="PoppinsMedium"
@@ -90,14 +90,14 @@ const styles = StyleSheet.create({
     width: width * 0.8,
   },
   account_cards: {
-    borderRadius: 15,
+    borderRadius: 20,
     borderCurve: "continuous",
-    shadowColor: "#cccccc",
+    shadowColor: "#fff",
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 1,
-    borderWidth: 0.2,
-    borderColor: "#3629B7",
+    borderWidth: 0.4,
+    borderColor: "#cccccc",
   },
 });

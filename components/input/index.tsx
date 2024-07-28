@@ -62,7 +62,12 @@ const CustomInput = forwardRef(
             {arialLabelBy}
           </CustomText>
         )}
-        <View className="border-[1px] border-textColor rounded-2xl h-[58px] justify-center w-full relative flex-row">
+        <View
+          className={classNames(
+            "border-[1px] border-textColor rounded-2xl h-[58px] justify-center w-full relative flex-row",
+            { "bg-gray-100 ": !editable }
+          )}
+        >
           <TextInput
             aria-label={name}
             aria-labelledby={arialLabelBy ?? ""}
@@ -83,6 +88,17 @@ const CustomInput = forwardRef(
             cursorColor="#3629B7"
             editable={editable}
           />
+          <View className="items-center justify-center ">
+            <TouchableOpacity onPress={openModal}>
+              {!editable && (
+                <Ionicons
+                  name="chevron-down-outline"
+                  color="#cccccc"
+                  size={20}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
           {isPassword && (
             <View
               className={`absolute right-5 ${
