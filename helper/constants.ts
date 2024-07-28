@@ -27,6 +27,7 @@ export const MainScreensTitle: Record<string, string> = {
   transaction_report: "Transaction Report",
   beneficiary: "Beneficiary",
   withdrawal: "Withdrawal",
+  account: "Account and card",
 };
 
 export const HomeCardArrays = [
@@ -488,5 +489,39 @@ export const images = [
     imagePath: require("@/assets/images/visa.png"),
     width: width * 0.73,
     height: width * 0.59,
+  },
+];
+
+export const accounts = [
+  {
+    title: "Account 1",
+    accountNumber: "1900 9893 1200",
+    balance: 20000,
+    branch: "New York",
+  },
+  {
+    title: "Account 2",
+    accountNumber: "4873 2100 1780",
+    balance: 120000,
+    branch: "London",
+  },
+  {
+    title: "Account 3",
+    accountNumber: "1900 1234 2278",
+    balance: 230000,
+    branch: "Lagos",
+  },
+];
+
+export const cardImages = [
+  {
+    imagePath: require("@/assets/images/visa.png"),
+    width: width * 0.8,
+    height: width * 0.64,
+  },
+  {
+    imagePath: require("@/assets/images/orange_visa.png"),
+    width: width * 0.8,
+    height: width * 0.64,
   },
 ];

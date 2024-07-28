@@ -22,6 +22,7 @@ export const subRoutes = [
   {
     routeTitle: "branch",
   },
+  { routeTitle: "account" },
   {
     routeTitle: "interest",
   },
