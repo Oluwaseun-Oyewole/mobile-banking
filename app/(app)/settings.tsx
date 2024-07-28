@@ -10,9 +10,6 @@ import { TouchableOpacity, View } from "react-native";
 const Settings = () => {
   return (
     <MainWrapper height={150} backgroundColor="#fff">
-      <Link href="/transaction_report">
-        <CustomText>Transaction</CustomText>
-      </Link>
       <View className="relative ">
         <View className="absolute items-center justify-center h-[100px] w-full -top-[60px]">
           <Image

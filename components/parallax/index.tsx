@@ -3,9 +3,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-type Props = {} & PropsWithChildren;
-
-export default function ParallaxScrollView({ children }: Props) {
+export default function ParallaxScrollView({ children }: PropsWithChildren) {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }}>

@@ -18,6 +18,8 @@ type InitialStatesType = {
   changeToCurrencyType: (arg: string) => void;
   isBiometricSupported?: boolean;
   updateBiometric: (arg: boolean) => void;
+  scrollBar?: boolean | null;
+  updateScrollbar?: VoidFunction;
 };
 
 const initialValues: InitialStatesType = {
@@ -35,6 +37,8 @@ const initialValues: InitialStatesType = {
   changeToCurrencyType: () => {},
   isBiometricSupported: false,
   updateBiometric: () => {},
+  scrollBar: null,
+  updateScrollbar: () => {},
 };
 
 export const AuthContext = createContext<InitialStatesType>(initialValues);
@@ -42,6 +46,7 @@ export const AuthContext = createContext<InitialStatesType>(initialValues);
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [[isLoading, session], setSession] = useStorageState("session");
   const [currentUser, setCurrentUser] = useState(true);
+  const [scrollBar, setScrollBar] = useState<boolean | null>(null);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("NGN");
@@ -62,6 +67,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   function updateBiometric(biometric: boolean) {
     setIsBiometricSupported(biometric);
   }
+
+  const updateScrollbar = () => {
+    setScrollBar(true);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -83,6 +92,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         changeToCurrencyType,
         isBiometricSupported,
         updateBiometric,
+        scrollBar,
+        updateScrollbar,
       }}
     >
       {children}

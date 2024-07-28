@@ -8,5 +8,5 @@ export function TabBarIcon({
   style,
   ...rest
 }: IconProps<ComponentProps<typeof Ionicons>["name"]>) {
-  return <Ionicons style={[{ marginBottom: -3 }, style]} {...rest} size={25} />;
+  return <Ionicons size={28} style={[{ marginBottom: -3 }, style]} {...rest} />;
 }

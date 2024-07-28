@@ -24,6 +24,7 @@ const MainWrapper = ({
   const getTitle = pathname.split("/");
   const getTitleEnum = getTitle[getTitle.length - 1];
   const router = useRouter();
+
   return (
     <ParallaxScrollView>
       <StatusBar
