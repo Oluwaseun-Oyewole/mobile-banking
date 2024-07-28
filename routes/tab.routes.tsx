@@ -24,6 +24,7 @@ export const subRoutes = [
   },
   { routeTitle: "account" },
   { routeTitle: "mobile_prepaid" },
+  { routeTitle: "pay_bills" },
   {
     routeTitle: "interest",
   },

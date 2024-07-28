@@ -30,6 +30,7 @@ export const MainScreensTitle: Record<string, string> = {
   account: "Account and card",
   mobile_prepaid: "Mobile Prepaid",
   mobile_confirm: "Mobile Confirm",
+  pay_bills: "Pay the bill",
 };
 
 export const HomeCardArrays = [
@@ -109,6 +110,42 @@ export const searchArrays = [
     title: "Exchange",
     description: "Exchange amount of money",
     imagePath: require("@/assets/images/exchange.svg"),
+    link: Routes.exchange,
+  },
+];
+
+export const payBillsArrays = [
+  {
+    title: "Payment History",
+    description: "All previous payments",
+    imagePath: require("@/assets/images/internet copy.svg"),
+    link: Routes.branch,
+  },
+
+  {
+    title: "Electric bill",
+    description: "Pay electric bill this month",
+    imagePath: require("@/assets/images/eletric.svg"),
+    link: Routes.branch,
+  },
+
+  {
+    title: "Water bill",
+    description: "Pay water bill this month",
+    imagePath: require("@/assets/images/water_bill.svg"),
+    link: Routes.interest,
+  },
+
+  {
+    title: "Mobile bill",
+    description: "Pay mobile this month",
+    imagePath: require("@/assets/images/mobile_bill.svg"),
+    link: Routes.exchange_rate,
+  },
+  {
+    title: "Internet bill",
+    description: "Pay internet bill this month",
+    imagePath: require("@/assets/images/internet copy.svg"),
     link: Routes.exchange,
   },
 ];
@@ -393,8 +430,6 @@ export const toCurrencies: CurrencyType[] = [
   { currencyCode: "HK$", currency: "Hong Kong Dollar", isSelected: false },
   { currencyCode: "USD $", currency: "Dollar", isSelected: true },
   { currencyCode: "NGN ₦", currency: "Naira", isSelected: false },
-  { currencyCode: "EUR €", currency: "Euro", isSelected: false },
-  { currencyCode: "ARS $", currency: "Peso", isSelected: false },
   { currencyCode: "TND د.ت", currency: "Tunisian dinar", isSelected: false },
   { currencyCode: "UGX USh", currency: "Ugandan shilling", isSelected: false },
   { currencyCode: "LAK ₭", currency: "Lao kip", isSelected: false },

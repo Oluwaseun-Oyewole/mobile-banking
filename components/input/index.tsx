@@ -36,7 +36,7 @@ const CustomInput = forwardRef(
       customClassName,
       showLabel,
       showExchangeRate,
-      openModal,
+      openModal = () => {},
       currencyType,
       selectable,
       editable = true,
@@ -66,7 +66,11 @@ const CustomInput = forwardRef(
             "border-[1px] border-textColor rounded-2xl h-[58px] items-center justify-between w-full relative flex-row focus:border-primary",
             { "bg-gray-100 ": selectable }
           )}
-          onTouchStart={openModal}
+          onTouchStart={() => {
+            if (selectable) {
+              openModal();
+            }
+          }}
         >
           <TextInput
             aria-label={name}
@@ -82,26 +86,20 @@ const CustomInput = forwardRef(
             //   }`,
             //   customClassName
             // )}
-            className={classNames("px-5 text-black w-[90%]", {
-              "w-full": !selectable,
-            })}
+            className={classNames(
+              "px-5 text-black w-[90%]",
+              {
+                "w-full": !selectable,
+              },
+              { "w-[80%]": showExchangeRate }
+            )}
             style={{ fontFamily: "PoppinsMedium" }}
             secureTextEntry={isPassword && !showPassword}
             placeholderTextColor="#CACACA"
             cursorColor="#000"
             editable={editable}
           />
-          {/* <View className="items-center justify-center ">
-            <Touchable>
-              {!editable && (
-                <Ionicons
-                  name="chevron-down-outline"
-                  color="#cccccc"
-                  size={20}
-                />
-              )}
-            </Touchable>
-          </View> */}
+
           {isPassword && (
             <View
               className={`absolute right-5 ${
@@ -121,7 +119,10 @@ const CustomInput = forwardRef(
           )}
 
           {showExchangeRate && (
-            <TouchableOpacity className="relative pr-2 h-full">
+            <TouchableOpacity
+              className="w-[20%] relative pr-2 h-full"
+              onPress={openModal}
+            >
               <View className="flex-row items-center justify-between">
                 <View className="h-[55px] w-[3px] bg-neutral-300" />
                 <CustomText
