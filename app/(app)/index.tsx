@@ -1,7 +1,7 @@
 import ATMCardComponent from "@/components/atm";
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
-import { HomeCardArrays } from "@/helper/constants";
+import { HomeCardArrays, images } from "@/helper/constants";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -12,26 +12,7 @@ import {
 } from "react-native-gesture-handler";
 import { useSharedValue, withSpring } from "react-native-reanimated";
 
-const width = Dimensions.get("window").width;
 const height = Math.floor(Dimensions.get("window").height * 0.23);
-
-const images = [
-  {
-    imagePath: require("@/assets/images/visa.png"),
-    width: width * 0.8,
-    height: width * 0.64,
-  },
-  {
-    imagePath: require("@/assets/images/orange_visa.png"),
-    width: width * 0.77,
-    height: width * 0.62,
-  },
-  {
-    imagePath: require("@/assets/images/visa.png"),
-    width: width * 0.73,
-    height: width * 0.59,
-  },
-];
 
 const HomeScreen = () => {
   const animatedValueIndex = useSharedValue(0);

@@ -1,4 +1,5 @@
 import { Routes } from "@/routes/routes";
+import { Dimensions } from "react-native";
 
 export const AuthScreensTitle: Record<string, string> = {
   login: "Sign in",
@@ -468,4 +469,24 @@ export const branchArray = [
   { name: "Branch Two", isSelected: false },
   { name: "Branch Three", isSelected: true },
   { name: "Branch Four", isSelected: false },
+];
+
+const width = Dimensions.get("window").width;
+
+export const images = [
+  {
+    imagePath: require("@/assets/images/visa.png"),
+    width: width * 0.8,
+    height: width * 0.64,
+  },
+  {
+    imagePath: require("@/assets/images/orange_visa.png"),
+    width: width * 0.77,
+    height: width * 0.62,
+  },
+  {
+    imagePath: require("@/assets/images/visa.png"),
+    width: width * 0.73,
+    height: width * 0.59,
+  },
 ];

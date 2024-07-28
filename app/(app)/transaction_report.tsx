@@ -1,32 +1,45 @@
+import ATMCardComponent from "@/components/atm";
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
 import { formatCurrency } from "@/helper";
+import { images } from "@/helper/constants";
 import { Image } from "expo-image";
 import React from "react";
-import { Dimensions, ImageBackground, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { StackedBarChart } from "react-native-chart-kit";
+import {
+  Directions,
+  Gesture,
+  GestureDetector,
+} from "react-native-gesture-handler";
+import { useSharedValue, withSpring } from "react-native-reanimated";
 
-const images = [
-  { imagePath: require("@/assets/images/visa.png") },
-  // { imagePath: require("@/assets/images/orange_visa.png") },
-];
+const height = Math.floor(Dimensions.get("window").height * 0.23);
 
-const transactions = [
+const todayTransactions = [
   {
     title: "Water Bill",
-    status: "Unsuccessfully",
+    status: "Unsuccessful",
     amount: "-280",
     color: "red-500",
-    time: "Today",
     imagePath: require("@/assets/images/water.svg"),
   },
   {
     title: "Income: Salary Oct",
     color: "primary",
     amount: "1200",
-    time: "Yesterday",
     imagePath: require("@/assets/images/income.svg"),
-    status: "Unsuccessfully",
+    status: "Unsuccessful",
+  },
+];
+
+const yesterdayTransactions = [
+  {
+    title: "Income: Salary Oct",
+    color: "primary",
+    amount: "1200",
+    imagePath: require("@/assets/images/income.svg"),
+    status: "Unsuccessful",
   },
   {
     title: "Electric Bill",
@@ -40,13 +53,13 @@ const transactions = [
     color: "primary",
     amount: "500",
     imagePath: require("@/assets/images/income_red.svg"),
-    status: "Unsuccessfully",
+    status: "successful",
   },
   {
     title: "Internet Bill",
     color: "red-500",
     amount: "-100",
-    status: "Successfully",
+    status: "Successful",
     imagePath: require("@/assets/images/internet.svg"),
   },
 ];
@@ -67,57 +80,56 @@ const Transaction_report = () => {
     legend: [],
   };
 
+  const animatedValueIndex = useSharedValue(0);
+  const flingUp = Gesture.Fling()
+    .direction(Directions.LEFT)
+    .onStart(() => {
+      if (animatedValueIndex.value > images.length) return;
+      if (animatedValueIndex.value == 0) return;
+      animatedValueIndex.value = withSpring(animatedValueIndex.value - 1, {
+        damping: 10,
+        stiffness: 40,
+        mass: 2,
+      });
+    });
+
+  const flingDown = Gesture.Fling()
+    .direction(Directions.RIGHT)
+    .onStart(() => {
+      if (animatedValueIndex.value === images.length) return;
+      if (animatedValueIndex.value === images.length - 1) return;
+      animatedValueIndex.value = withSpring(animatedValueIndex.value + 1, {
+        damping: 10,
+        stiffness: 40,
+        mass: 2,
+      });
+    });
+
   return (
-    <MainWrapper backgroundColor="#fff">
-      <View className="h-[270px]">
-        {images?.map((image, index) => {
-          return (
-            <ImageBackground
-              key={index}
-              source={image.imagePath}
-              className="flex-1 items-center justify-center"
-            >
-              <View className=" w-full p-6">
-                <View className="">
-                  <CustomText
-                    fontFamily="PoppinsBold"
-                    customClassName="text-white text-lg"
-                  >
-                    Seun Samuel
-                  </CustomText>
-                  <CustomText
-                    fontFamily="PoppinsMedium"
-                    customClassName="text-white pt-8"
-                  >
-                    Amazon Platinum
-                  </CustomText>
-                  <CustomText
-                    fontFamily="PoppinsMedium"
-                    customClassName="text-white pt-2"
-                  >
-                    2020 3456 **** **** 8783
-                  </CustomText>
-                  <CustomText
-                    fontFamily="PoppinsBold"
-                    customClassName="text-white pt-4 text-lg"
-                  >
-                    {formatCurrency(78787)}
-                  </CustomText>
-                </View>
-              </View>
-            </ImageBackground>
-          );
-        })}
+    <MainWrapper backgroundColor="#fff" height={110}>
+      <View style={styles.card_container}>
+        <GestureDetector gesture={Gesture.Exclusive(flingUp, flingDown)}>
+          <View className="items-center justify-center">
+            {images?.map((card, index) => (
+              <ATMCardComponent
+                key={index}
+                index={index}
+                animatedValueIndex={animatedValueIndex}
+                card={card}
+              />
+            ))}
+          </View>
+        </GestureDetector>
       </View>
 
-      <View>
-        <CustomText fontFamily="PoppinsMedium" customClassName="text-sm">
+      <View className="py-10">
+        <CustomText fontFamily="PoppinsMedium" customClassName="text-sm pt-3">
           Balances
         </CustomText>
         <View className="flex-row items-center pt-2">
           <CustomText
             fontFamily="PoppinsBold"
-            customClassName="text-2xl text-primary"
+            customClassName="text-3xl text-primary"
           >
             1000
           </CustomText>
@@ -128,7 +140,12 @@ const Transaction_report = () => {
             USD
           </CustomText>
         </View>
-        <View style={{ marginTop: 10, overflow: "hidden" }}>
+        <View
+          style={{
+            marginTop: 10,
+            overflow: "hidden",
+          }}
+        >
           <StackedBarChart
             data={data}
             withHorizontalLabels={false}
@@ -136,52 +153,92 @@ const Transaction_report = () => {
             height={200}
             hideLegend
             chartConfig={{
-              propsForLabels: { fontFamily: "PoppinsMedium", fontSize: 13 },
               backgroundGradientFrom: "#fff",
               backgroundGradientTo: "#fff",
-              decimalPlaces: 2,
-              barPercentage: 0.35,
+              barPercentage: 0.4,
               color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-              style: { borderRadius: 10 },
-              propsForBackgroundLines: { strokeWidth: 0.7 },
-              propsForDots: { r: 1000, strokeWidth: "2", stroke: "#fffff" },
+              // labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              propsForBackgroundLines: {
+                strokeWidth: 0.4,
+              },
               stackedBar: false,
+              propsForVerticalLabels: {
+                children: (
+                  <View className="bg-red-500 w-[100px] h-[40px]">
+                    <CustomText>Testing</CustomText>
+                  </View>
+                ),
+                fontFamily: "monospace",
+                fontSize: 14,
+              },
+              barRadius: 0,
+              linejoinType: "round",
             }}
             style={{
               marginLeft: -75,
               paddingLeft: 16,
               overflow: "hidden",
             }}
-            // decorator={({ width, height, data }) => {
-            //   const xAxisLabels = [0, 20, 40, 60, 80, 100]; // Customize y-axis labels as needed
-            //   return (
-            //     <Svg
-            //       height={height}
-            //       width={width}
-            //       style={{ position: "absolute", left: -30 }}
-            //     >
-            //       <G>
-            //         {xAxisLabels.map((label, index) => (
-            //           <CustomText key={index}>Label -- {label}</CustomText>
-            //         ))}
-            //       </G>
-            //     </Svg>
-            //   );
-            // }}
           />
         </View>
       </View>
 
-      <View className="py-12">
-        {transactions?.map((transaction, index) => {
+      <View>
+        <CustomText customClassName="text-[12px]">Today</CustomText>
+        {todayTransactions?.map((transaction, index) => {
           return (
-            <View key={index} className="flex-row items-center justify-between">
+            <View
+              key={index}
+              className="flex-row items-center justify-between border-b-[0.6px] border-gray-300"
+            >
               <View className="flex-row items-center">
                 <View>
-                  <CustomText customClassName="text-[10px]">
-                    {transaction?.time}
+                  <View className="h-[60px]">
+                    <Image
+                      className="w-[60px] h-full"
+                      placeholder="illustration icon"
+                      contentFit="cover"
+                      transition={1000}
+                      source={transaction?.imagePath}
+                    />
+                  </View>
+                </View>
+                <View>
+                  <CustomText
+                    customClassName="text-[12px]"
+                    fontFamily="PoppinsMedium"
+                  >
+                    {transaction?.title}
                   </CustomText>
+                  <CustomText
+                    customClassName="text-[12px] text-neutral2"
+                    fontFamily="PoppinsMedium"
+                  >
+                    {transaction?.status}
+                  </CustomText>
+                </View>
+              </View>
+              <CustomText
+                customClassName={`text-${transaction.color}`}
+                fontFamily="PoppinsMedium"
+              >
+                {formatCurrency(transaction?.amount as string)}
+              </CustomText>
+            </View>
+          );
+        })}
+      </View>
+
+      <View className="py-8">
+        <CustomText customClassName="text-[12px]">Yesterday</CustomText>
+        {yesterdayTransactions?.map((transaction, index) => {
+          return (
+            <View
+              key={index}
+              className="flex-row items-center justify-between border-b-[0.6px] border-gray-300"
+            >
+              <View className="flex-row items-center">
+                <View>
                   <View className="h-[60px]">
                     <Image
                       className="w-[60px] h-full"
@@ -220,5 +277,24 @@ const Transaction_report = () => {
     </MainWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  card_container: {
+    height: height - 35,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 30,
+    marginTop: 5,
+  },
+
+  atm_card: {
+    borderRadius: 15,
+    borderWidth: 0.3,
+    borderColor: "#b9b9b9",
+  },
+  image_card: {
+    position: "absolute",
+  },
+});
 
 export default Transaction_report;
