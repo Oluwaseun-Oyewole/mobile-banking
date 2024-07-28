@@ -33,13 +33,14 @@ const ForgotPassword = () => {
     values: Record<string, any>,
     { resetForm }: any
   ) => {
+    resetForm({});
     push(Routes.changePassword);
     setCurrentStep(2);
   };
 
   if (currentStep === 2) {
     return (
-      <AuthWrapper backgroundColor="#FFF">
+      <AuthWrapper backgroundColor="#fff">
         <View className="pt-12 h-full">
           <CustomText
             customClassName="text-[#979797] pb-3"

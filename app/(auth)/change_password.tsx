@@ -49,7 +49,7 @@ const ChangePassword = () => {
               <>
                 <CustomInput
                   id="password"
-                  placeholder="*******"
+                  placeholder="Password"
                   name="password"
                   onChangeText={formik.handleChange("password")}
                   onBlur={formik.handleBlur("password")}
@@ -67,7 +67,7 @@ const ChangePassword = () => {
                 <View className="pt-5">
                   <CustomInput
                     id="confirmPassword"
-                    placeholder="*****"
+                    placeholder="Confirm Password"
                     name="confirmPassword"
                     keyboardType="visible-password"
                     onChangeText={formik.handleChange("confirmPassword")}

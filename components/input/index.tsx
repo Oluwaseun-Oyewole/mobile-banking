@@ -39,7 +39,7 @@ const CustomInput = forwardRef(
       openModal,
       currencyType,
       selectable,
-      editable,
+      editable = true,
       showBank,
       ...rest
     }: ICustomProps,
@@ -64,7 +64,7 @@ const CustomInput = forwardRef(
         )}
         <View
           className={classNames(
-            "border-[1px] border-textColor rounded-2xl h-[58px] justify-center w-full relative flex-row",
+            "border-[1px] border-textColor rounded-2xl h-[58px] justify-center w-full relative flex-row focus:border-primary",
             { "bg-gray-100 ": !editable }
           )}
         >
@@ -74,7 +74,7 @@ const CustomInput = forwardRef(
             {...rest}
             className={classNames(
               `${
-                showExchangeRate || selectable || showBank ? "px-5" : "px-0"
+                showExchangeRate || selectable || showBank ? "px-20" : "px-0"
               } focus:border-primary ${
                 showExchangeRate || selectable || showBank
                   ? " w-[75%] text-black"
@@ -85,7 +85,7 @@ const CustomInput = forwardRef(
             style={{ fontFamily: "PoppinsMedium" }}
             secureTextEntry={isPassword && !showPassword}
             placeholderTextColor="#CACACA"
-            cursorColor="#3629B7"
+            cursorColor="#000"
             editable={editable}
           />
           <View className="items-center justify-center ">

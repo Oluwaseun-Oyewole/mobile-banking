@@ -30,11 +30,7 @@ const Login = () => {
   const validationSchema = Yup.object({
     phone: Yup.string().required("Phone number is required"),
     password: Yup.string()
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[!@#$%^&*:;'><.,/?}{[\]\-_+=])(?=.{8,})/,
-        "Must Contain 7 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-      )
-      .required("Password is required"),
+    .required("Password is required"),
   });
 
   const onSubmit = async (values: Record<string, any>, { resetForm }: any) => {
@@ -70,7 +66,7 @@ const Login = () => {
   };
 
   return (
-    <AuthWrapper>
+    <AuthWrapper backgroundColor="#fff">
       <View>
         <AuthGreeting
           heading="Welcome Back"
@@ -94,7 +90,7 @@ const Login = () => {
                 <View className="mt-4">
                   <CustomInput
                     id="password"
-                    placeholder="*****"
+                    placeholder="Password"
                     name="password"
                     keyboardType="visible-password"
                     onChangeText={formik.handleChange("password")}

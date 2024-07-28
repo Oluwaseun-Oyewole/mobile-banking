@@ -5,13 +5,17 @@ import { Routes } from "@/routes/routes";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
-import { View } from "react-native";
+import { Dimensions, View } from "react-native";
 
 const PasswordSuccess = () => {
+  const height = Dimensions.get("window").height;
   const { push } = useRouter();
   return (
     <AuthWrapper backgroundColor="#fff">
-      <View className="h-full items-center justify-center">
+      <View
+        className="items-center justify-center"
+        style={{ height: height * 0.7 }}
+      >
         <Image
           className="h-[180px] w-[180px]"
           placeholder="illustration icon"
