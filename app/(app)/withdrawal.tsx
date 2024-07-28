@@ -27,7 +27,7 @@ const Withdrawal = () => {
     push(Routes.withdrawal_success);
   };
 
-  const fromCurrencyRef = useRef<Modalize>(null);
+  const accountRef = useRef<Modalize>(null);
   const { fromCurrency } = useSession();
   const [accountValue, setAccountValue] = useState("");
   const [checkIndex, setCheckIndex] = useState(0);
@@ -61,12 +61,13 @@ const Withdrawal = () => {
                 <>
                   <CustomInput
                     placeholder="Choose account/card"
-                    onChangeText={formik.handleChange("phone")}
-                    onBlur={formik.handleBlur("phone")}
-                    value={accountValue}
-                    name="phone"
+                    onChangeText={formik.handleChange("account")}
+                    onBlur={formik.handleBlur("account")}
+                    value={`VISA ${accountValue}`}
+                    name="account"
+                    selectable
                     editable={false}
-                    openModal={() => fromCurrencyRef?.current?.open()}
+                    openModal={() => accountRef?.current?.open()}
                     currencyType={fromCurrency}
                   />
 
@@ -81,6 +82,7 @@ const Withdrawal = () => {
                     value={formik.values.amount}
                     name="amount"
                     editable
+                    keyboardType="numeric"
                   />
 
                   <View className="pt-10">
@@ -98,24 +100,24 @@ const Withdrawal = () => {
         </View>
 
         <Modalize
-          ref={fromCurrencyRef}
+          ref={accountRef}
           withReactModal
           withHandle={false}
           velocity={0.5}
           modalHeight={600}
         >
-          <Pressable onPress={() => fromCurrencyRef?.current?.close()}>
+          <Pressable onPress={() => accountRef?.current?.close()}>
             <View className="justify-end items-end py-4 px-8">
               <Ionicons name="close-circle-outline" size={30} />
             </View>
             <View className="px-8">
               <CustomText
                 customClassName="text-[15px]"
-                fontFamily="PoppinsBold"
+                fontFamily="PoppinsMedium"
               >
                 Choose account
               </CustomText>
-              <View className="pb-5 pt-2">
+              <View className="py-5">
                 {allAccounts?.map((account, index) => {
                   return (
                     <TouchableOpacity
@@ -131,7 +133,6 @@ const Withdrawal = () => {
                           customClassName={classNames("", {
                             "text-primary": checkIndex === account.id,
                           })}
-                          fontFamily="PoppinsMedium"
                         >
                           {account.account}
                         </CustomText>

@@ -2,9 +2,8 @@ import ATMCardComponent from "@/components/atm";
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
 import { HomeCardArrays, images } from "@/helper/constants";
-import { Routes } from "@/routes/routes";
 import { Image } from "expo-image";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import {
   Directions,
@@ -45,9 +44,6 @@ const HomeScreen = () => {
 
   return (
     <MainWrapper backgroundColor="#fff">
-      <Link href={Routes.login}>
-        <CustomText>Login</CustomText>
-      </Link>
       <View style={styles.card_container}>
         <GestureDetector gesture={Gesture.Exclusive(flingUp, flingDown)}>
           <View className="items-center justify-center">

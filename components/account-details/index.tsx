@@ -31,50 +31,30 @@ export const AccountComponent = () => {
         return (
           <View
             key={index}
-            className="my-2 rounded-lg py-6 px-4"
+            className="my-2 rounded-lg py-7 px-4"
             style={styles.account_cards}
           >
             <View className="flex-row justify-between items-center">
-              <CustomText
-                customClassName="text-[17px]"
-                fontFamily="PoppinsMedium"
-              >
+              <CustomText customClassName="text-[17px]">
                 {account.title}
               </CustomText>
-              <CustomText
-                customClassName="text-[15px]"
-                fontFamily="PoppinsMedium"
-              >
+              <CustomText customClassName="text-[15px]">
                 {account.accountNumber}
               </CustomText>
             </View>
 
             <View className="flex-row justify-between items-center py-2">
-              <CustomText
-                customClassName="text-gray-500"
-                fontFamily="PoppinsMedium"
-              >
+              <CustomText customClassName="text-gray-500">
                 Available balance
               </CustomText>
-              <CustomText
-                customClassName="text-primary"
-                fontFamily="PoppinsMedium"
-              >
+              <CustomText customClassName="text-primary">
                 {formatCurrency(account.balance)}
               </CustomText>
             </View>
 
             <View className="flex-row justify-between items-center">
-              <CustomText
-                fontFamily="PoppinsMedium"
-                customClassName="text-gray-500"
-              >
-                Branch
-              </CustomText>
-              <CustomText
-                fontFamily="PoppinsMedium"
-                customClassName="text-primary"
-              >
+              <CustomText customClassName="text-gray-500">Branch</CustomText>
+              <CustomText customClassName="text-primary">
                 {account.branch}
               </CustomText>
             </View>
@@ -91,13 +71,7 @@ const styles = StyleSheet.create({
   },
   account_cards: {
     borderRadius: 20,
-    borderCurve: "continuous",
-    shadowColor: "#fff",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 1,
-    borderWidth: 0.4,
+    borderWidth: 1,
     borderColor: "#cccccc",
   },
 });
