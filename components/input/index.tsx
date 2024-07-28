@@ -57,7 +57,6 @@ const CustomInput = forwardRef(
             aria-label={arialLabel}
             nativeID={name}
             customClassName="pb-1 text-neutral2"
-            fontFamily="PoppinsMedium"
           >
             {arialLabelBy}
           </CustomText>

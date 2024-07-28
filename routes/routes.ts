@@ -26,4 +26,7 @@ export const enum Routes {
   confirm = "confirm",
   transfer_success = "transfer_success",
   withdrawal_success = "withdrawal_success",
+  mobile_prepaid = "mobile_prepaid",
+  mobile_confirm = "mobile_confirm",
+  mobile_prepaid_success = "mobile_prepaid_success",
 }

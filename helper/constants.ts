@@ -28,6 +28,8 @@ export const MainScreensTitle: Record<string, string> = {
   beneficiary: "Beneficiary",
   withdrawal: "Withdrawal",
   account: "Account and card",
+  mobile_prepaid: "Mobile Prepaid",
+  mobile_confirm: "Mobile Confirm",
 };
 
 export const HomeCardArrays = [
@@ -49,7 +51,7 @@ export const HomeCardArrays = [
   {
     title: "Mobile prepaid",
     imagePath: require("@/assets/images/prepaid.png"),
-    link: Routes.prepaid,
+    link: Routes.mobile_prepaid,
   },
   {
     title: "Pay the bill",

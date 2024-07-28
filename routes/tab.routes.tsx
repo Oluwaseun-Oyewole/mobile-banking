@@ -23,6 +23,7 @@ export const subRoutes = [
     routeTitle: "branch",
   },
   { routeTitle: "account" },
+  { routeTitle: "mobile_prepaid" },
   {
     routeTitle: "interest",
   },
@@ -53,6 +54,10 @@ export const subRoutes = [
   {
     routeTitle: "confirm",
   },
+  {
+    routeTitle: "mobile_confirm",
+  },
+  { routeTitle: "mobile_prepaid_success" },
   {
     routeTitle: "transfer_success",
   },

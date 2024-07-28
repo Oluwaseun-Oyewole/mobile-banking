@@ -88,10 +88,7 @@ const ATMCardComponent = ({
           >
             Seun Samuel
           </CustomText>
-          <CustomText
-            fontFamily="PoppinsMedium"
-            customClassName="text-white pt-8"
-          >
+          <CustomText customClassName="text-white pt-8">
             Amazon Platinum
           </CustomText>
           <View className="flex-row items-center pt-2">
@@ -112,10 +109,7 @@ const ATMCardComponent = ({
               </>
             ) : (
               <>
-                <CustomText
-                  customClassName="text-white pr-4 text-lg"
-                  fontFamily="PoppinsMedium"
-                >
+                <CustomText customClassName="text-white pr-4 text-lg">
                   2020 3456 1253 8783
                 </CustomText>
                 <Ionicons
@@ -128,7 +122,7 @@ const ATMCardComponent = ({
             )}
           </View>
           <CustomText
-            fontFamily="PoppinsBold"
+            fontFamily="PoppinsMedium"
             customClassName="text-white pt-4 text-lg"
           >
             {formatCurrency(78787)}
