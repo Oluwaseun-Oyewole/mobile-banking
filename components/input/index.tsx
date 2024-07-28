@@ -64,32 +64,36 @@ const CustomInput = forwardRef(
         )}
         <View
           className={classNames(
-            "border-[1px] border-textColor rounded-2xl h-[58px] justify-center w-full relative flex-row focus:border-primary",
-            { "bg-gray-100 ": !editable }
+            "border-[1px] border-textColor rounded-2xl h-[58px] items-center justify-between w-full relative flex-row focus:border-primary",
+            { "bg-gray-100 ": selectable }
           )}
+          onTouchStart={openModal}
         >
           <TextInput
             aria-label={name}
             aria-labelledby={arialLabelBy ?? ""}
             {...rest}
-            className={classNames(
-              `${
-                showExchangeRate || selectable || showBank ? "px-20" : "px-0"
-              } focus:border-primary ${
-                showExchangeRate || selectable || showBank
-                  ? " w-[75%] text-black"
-                  : " w-[90%]"
-              }`,
-              customClassName
-            )}
+            // className={classNames(
+            //   `${
+            //     showExchangeRate || selectable || showBank ? "pl-5" : "px-5"
+            //   } focus:border-primary ${
+            //     showExchangeRate || selectable || showBank
+            //       ? " text-black"
+            //       : " w-[90%]"
+            //   }`,
+            //   customClassName
+            // )}
+            className={classNames("px-5 text-black w-[90%]", {
+              "w-full": !selectable,
+            })}
             style={{ fontFamily: "PoppinsMedium" }}
             secureTextEntry={isPassword && !showPassword}
             placeholderTextColor="#CACACA"
             cursorColor="#000"
             editable={editable}
           />
-          <View className="items-center justify-center ">
-            <TouchableOpacity onPress={openModal}>
+          {/* <View className="items-center justify-center ">
+            <Touchable>
               {!editable && (
                 <Ionicons
                   name="chevron-down-outline"
@@ -97,8 +101,8 @@ const CustomInput = forwardRef(
                   size={20}
                 />
               )}
-            </TouchableOpacity>
-          </View>
+            </Touchable>
+          </View> */}
           {isPassword && (
             <View
               className={`absolute right-5 ${
@@ -118,10 +122,7 @@ const CustomInput = forwardRef(
           )}
 
           {showExchangeRate && (
-            <TouchableOpacity
-              className="w-[25%] relative pr-2 h-full"
-              onPress={openModal}
-            >
+            <TouchableOpacity className="relative pr-2 h-full">
               <View className="flex-row items-center justify-between">
                 <View className="h-[55px] w-[3px] bg-neutral-300" />
                 <CustomText
@@ -148,10 +149,7 @@ const CustomInput = forwardRef(
           )}
 
           {selectable && (
-            <TouchableOpacity
-              className="w-[25%] relative pr-2 h-full items-center justify-center"
-              onPress={openModal}
-            >
+            <TouchableOpacity className="relative pr-5 w-[10%]">
               <View className="items-center justify-center">
                 <Ionicons name="chevron-up-outline" size={13} color="#898989" />
                 <Ionicons
@@ -164,10 +162,7 @@ const CustomInput = forwardRef(
           )}
 
           {showBank && (
-            <TouchableOpacity
-              className="w-[25%] relative pr-2 h-full items-center justify-center"
-              onPress={openModal}
-            >
+            <TouchableOpacity className="h-full pr-5 items-center justify-center">
               <View className="items-center justify-center">
                 <Ionicons name="chevron-up-outline" size={13} color="#898989" />
                 <Ionicons

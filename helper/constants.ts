@@ -411,17 +411,20 @@ export const transferArray = [
     transferType: "Transfer via card number",
     isSelected: true,
     imagePath: require("@/assets/images/card.svg"),
+    id: 0,
   },
 
   {
     transferType: "Transfer to another bank",
     isSelected: false,
     imagePath: require("@/assets/images/house.svg"),
+    id: 1,
   },
   {
     transferType: "Transfer to the same bank",
     isSelected: false,
     imagePath: require("@/assets/images/user.svg"),
+    id: 2,
   },
 ];
 

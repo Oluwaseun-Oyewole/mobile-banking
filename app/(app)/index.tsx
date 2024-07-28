@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 
   atm_card: {
     borderRadius: 15,
-    borderWidth: 0.3,
+    borderWidth: 0.45,
     borderColor: "#b9b9b9",
   },
   image_card: {

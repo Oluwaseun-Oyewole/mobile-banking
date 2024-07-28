@@ -76,7 +76,7 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
                     arialLabel="Label for bank"
                     arialLabelBy="choose bank"
                     showLabel
-                    showBank
+                    selectable
                     openModal={() => fromCurrencyRef?.current?.open()}
                     editable={false}
                   />
@@ -92,7 +92,7 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
                       arialLabelBy="Choose branch"
                       showLabel
                       editable={false}
-                      showBank
+                      selectable
                       openModal={() => toCurrencyRef?.current?.open()}
                     />
                   </View>
@@ -289,7 +289,7 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
     );
   }
   return (
-    <View className="py-5">
+    <View className="py-6">
       <Formik
         initialValues={{
           name: "",
@@ -305,7 +305,7 @@ const TransferForm = ({ tabIndex }: { tabIndex: number }) => {
           return (
             <>
               <CustomInput
-                placeholder="Namess"
+                placeholder="Name"
                 onChangeText={formik.handleChange("name")}
                 onBlur={formik.handleBlur("name")}
                 value={formik.values.name}

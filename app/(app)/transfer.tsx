@@ -2,7 +2,11 @@ import CustomInput from "@/components/input";
 import MainWrapper from "@/components/main/wrapper";
 import { CustomText } from "@/components/text";
 import TransferForm from "@/components/transfer";
-import { beneficiaryArray, transferArray } from "@/helper/constants";
+import {
+  allAccounts,
+  beneficiaryArray,
+  transferArray,
+} from "@/helper/constants";
 import { Routes } from "@/routes/routes";
 import { Ionicons } from "@expo/vector-icons";
 import classNames from "classnames";
@@ -10,7 +14,13 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Formik } from "formik";
 import React, { useRef, useState } from "react";
-import { Pressable, ScrollView, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Modalize } from "react-native-modalize";
 
 const Transfer = () => {
@@ -34,14 +44,16 @@ const Transfer = () => {
     setTransfers(updateTransfer);
   };
 
-  const [cardType, ,] = useState("VISA 0025563565376");
+  const allAccountRef = useRef<Modalize>(null);
+  const [accountValue, setAccountValue] = useState("0025563565376");
+  const [checkIndex, setCheckIndex] = useState(0);
 
   return (
     <MainWrapper backgroundColor="#fff">
       <Pressable onPress={() => transferModalRef.current?.open()}>
         <Formik
           initialValues={{
-            cardType: "",
+            accountNumber: "",
           }}
           onSubmit={onSubmit}
         >
@@ -49,13 +61,14 @@ const Transfer = () => {
             return (
               <>
                 <CustomInput
-                  placeholder={cardType}
-                  onChangeText={formik.handleChange("cardType")}
-                  onBlur={formik.handleBlur("cardType")}
-                  value={cardType}
-                  name="cardType"
+                  placeholder={accountValue}
+                  onChangeText={formik.handleChange("accountNumber")}
+                  onBlur={formik.handleBlur("accountNumber")}
+                  value={`VISA ${accountValue}`}
+                  name="accountNumber"
                   editable={false}
                   selectable
+                  openModal={() => allAccountRef?.current?.open()}
                 />
               </>
             );
@@ -63,13 +76,8 @@ const Transfer = () => {
         </Formik>
       </Pressable>
 
-      <View className="pt-5">
-        <CustomText
-          customClassName="pl-2 text-neutral3"
-          fontFamily="PoppinsMedium"
-        >
-          Choose transaction
-        </CustomText>
+      <View className="pt-8">
+        <CustomText customClassName="pb-2">Choose transaction</CustomText>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View className="flex-row gap-x-5 mt-[5px]">
             {transfers?.map((transfer, index) => {
@@ -77,10 +85,11 @@ const Transfer = () => {
                 <Pressable
                   key={index}
                   className={classNames(
-                    "bg-orange-700 p-4 h-[140px] rounded-lg justify-center opacity-70",
+                    "p-4 h-[140px] rounded-lg justify-center opacity-70 bg-gray-400",
                     {
                       "bg-primary opacity-100": transfer.isSelected,
-                    }
+                    },
+                    { " border-textColor border-[1px]": !transfer.isSelected }
                   )}
                   onPress={() => {
                     selectTransfer(index);
@@ -97,7 +106,11 @@ const Transfer = () => {
                     />
                   </View>
 
-                  <CustomText customClassName="text-white mt-2 w-[65%]">
+                  <CustomText
+                    customClassName={classNames("text-white mt-2 w-[65%]", {
+                      "text-white": !transfer.isSelected,
+                    })}
+                  >
                     {transfer.transferType}
                   </CustomText>
                 </Pressable>
@@ -109,57 +122,56 @@ const Transfer = () => {
 
       <View className="pt-14 pb-10">
         <View className="flex-row items-center justify-between pl-2 pb-3">
-          <CustomText
-            customClassName="text-neutral3"
-            fontFamily="PoppinsMedium"
-          >
-            Choose beneficiary
-          </CustomText>
+          <CustomText>Choose beneficiary</CustomText>
           <TouchableOpacity onPress={() => beneficiaryRef.current?.open()}>
-            <CustomText
-              customClassName="text-primary"
-              fontFamily="PoppinsMedium"
-            >
+            <CustomText customClassName="text-primary">
               Find beneficiary
             </CustomText>
           </TouchableOpacity>
         </View>
 
-        <ScrollView
-          horizontal
+        <FlatList
+          data={beneficiaries}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={{
+            paddingLeft: 10,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 0, flex: 1 }}
-        >
-          {beneficiaries?.map((transfer, index) => {
+          horizontal
+          renderItem={({ item, index: fIndex }) => {
             return (
-              <Pressable
-                key={index}
-                className={classNames(
-                  "bg-gray-100 w-[30%] p-3 h-[150px] rounded-lg justify-center items-center mx-1",
-                  {
-                    "bg-gray-100 opacity-100": transfer.isSelected,
-                  }
-                )}
-                onPress={() => selectTransfer(index)}
-              >
-                <View className="h-[50px]">
-                  <Image
-                    className="w-[50px] h-full"
-                    placeholder="illustration icon"
-                    contentFit="cover"
-                    transition={1000}
-                    source={transfer.imagePath}
-                  />
-                </View>
+              <View key={fIndex}>
+                <View
+                  className="w-[120px] h-[150px] mx-[6px]"
+                  style={{
+                    borderRadius: 15,
+                    borderCurve: "continuous",
+                    borderWidth: 0.5,
+                    borderColor: "#b9b9b9",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <View className="h-[50px]">
+                    <Image
+                      className="w-[50px] h-full"
+                      placeholder="illustration icon"
+                      contentFit="cover"
+                      transition={1000}
+                      source={item.imagePath}
+                    />
+                  </View>
 
-                <CustomText customClassName="text-black mt-2">
-                  {transfer.name}
-                </CustomText>
-              </Pressable>
+                  <CustomText customClassName="text-black mt-2">
+                    {item.name}
+                  </CustomText>
+                </View>
+              </View>
             );
-          })}
-          {/* </View> */}
-        </ScrollView>
+          }}
+        />
       </View>
 
       <TransferForm tabIndex={tabIndex} />
@@ -199,6 +211,56 @@ const Transfer = () => {
             </Formik>
           </View>
         </TouchableOpacity>
+      </Modalize>
+
+      <Modalize
+        ref={allAccountRef}
+        withReactModal
+        withHandle={false}
+        velocity={0.5}
+        modalHeight={600}
+      >
+        <Pressable onPress={() => allAccountRef?.current?.close()}>
+          <View className="justify-end items-end py-4 px-8">
+            <Ionicons name="close-circle-outline" size={30} />
+          </View>
+          <View className="px-8">
+            <CustomText
+              customClassName="text-[15px]"
+              fontFamily="PoppinsMedium"
+            >
+              Select account number
+            </CustomText>
+            <View className="pb-5 pt-2">
+              {allAccounts?.map((account, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    className="text-neutral2 text-lg flex-row items-center py-3 justify-between"
+                    onPress={() => {
+                      setCheckIndex(index);
+                      setAccountValue(account.account);
+                    }}
+                  >
+                    <View className="flex-row">
+                      <CustomText
+                        customClassName={classNames("", {
+                          "text-primary": checkIndex === account.id,
+                        })}
+                      >
+                        {account.account}
+                      </CustomText>
+                    </View>
+
+                    {checkIndex === account.id && (
+                      <Ionicons name="checkmark" size={20} color="#3629B7" />
+                    )}
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+        </Pressable>
       </Modalize>
     </MainWrapper>
   );
