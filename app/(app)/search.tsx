@@ -23,10 +23,7 @@ const Search = () => {
                 <CustomText customClassName="text-lg" fontFamily="PoppinsBold">
                   {cards?.title}
                 </CustomText>
-                <CustomText
-                  customClassName="text-xs pt-[5px]"
-                  fontFamily="PoppinsMedium"
-                >
+                <CustomText customClassName="text-xs pt-[5px]">
                   {cards?.description}
                 </CustomText>
               </View>

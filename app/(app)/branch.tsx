@@ -2,15 +2,20 @@ import { CustomText } from "@/components/text";
 import { Ionicons } from "@expo/vector-icons";
 import Location from "expo-location";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useRef, useState } from "react";
 import {
+  Dimensions,
   KeyboardAvoidingView,
   Platform,
   TextInputProps,
   TouchableOpacity,
   View,
 } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from "react-native-gesture-handler";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import MapView, { Callout, Marker } from "react-native-maps";
 import { Modalize } from "react-native-modalize";
@@ -101,25 +106,19 @@ const Branch = () => {
 
   return (
     <GestureHandlerRootView>
+      <StatusBar hidden />
       <View className="flex-1 bg-white relative">
         {errorMsg ? (
           <CustomText>{errorMsg}</CustomText>
         ) : (
           <MapView className="h-full" mapType="standard">
             <Marker
-              // draggable
-              // flat
               onPress={() => mapRef.current.animateToRegion(zoomInRegion, 2000)}
-              // image={{ uri: require("@/assets/images/account.png") }}
               coordinate={{ latitude: 37.0902, longitude: 95.7129 }}
             />
             {places.map((place, i) => (
               <>
                 <Marker
-                  // draggable
-                  // flat
-                  // icon={{ uri: require("@/assets/images/account.png") }}
-                  // image={{ uri: require("@/assets/images/location.svg") }}
                   key={i}
                   coordinate={{
                     latitude: place.lat,
@@ -133,45 +132,32 @@ const Branch = () => {
                     tooltip
                     style={{
                       width: 300,
-                      height: 200,
+                      height: 160,
                       position: "absolute",
-                      backgroundColor: "rgba(0,0,0,0.7)",
                       flex: 1,
                       alignItems: "flex-start",
                       justifyContent: "center",
-                      borderRadius: 200,
                       padding: 10,
+                      shadowColor: "#000",
+                      shadowOffset: { width: 0, height: 0 },
+                      shadowOpacity: 0.2,
+                      shadowRadius: 10,
+                      elevation: 3,
+                      backgroundColor: "#fff",
+                      borderRadius: 100,
                     }}
                   >
                     <View>
-                      <CustomText
-                        customClassName="text-white"
-                        fontFamily="PoppinsMedium"
-                      >
-                        Lat - {place?.lat}
+                      <CustomText customClassName="text-black">
+                        Lat,long - {place?.lat}, {place?.lng}
                       </CustomText>
-                      <CustomText
-                        customClassName="text-white"
-                        fontFamily="PoppinsMedium"
-                      >
-                        Long - {place?.lng}
-                      </CustomText>
-                      <CustomText
-                        customClassName="text-white"
-                        fontFamily="PoppinsMedium"
-                      >
+                      <CustomText customClassName="text-black">
                         Country - {place?.country}
                       </CustomText>
-                      <CustomText
-                        customClassName="text-white"
-                        fontFamily="PoppinsMedium"
-                      >
-                        Address - {place?.street}
+                      <CustomText customClassName="text-black">
+                        Add - {place?.street}
                       </CustomText>
-                      <CustomText
-                        customClassName="text-white"
-                        fontFamily="PoppinsMedium"
-                      >
+                      <CustomText customClassName="text-black">
                         Branch - {place?.description}
                       </CustomText>
                     </View>
@@ -195,7 +181,10 @@ const Branch = () => {
             </CustomText>
           </TouchableOpacity>
 
-          <Modalize ref={modalizeRef}>
+          <Modalize
+            ref={modalizeRef}
+            modalHeight={Dimensions.get("window").height * 0.7}
+          >
             <TouchableOpacity onPress={() => modalizeRef?.current?.close()}>
               <View className="justify-end items-end p-4">
                 <CustomText fontFamily="PoppinsBold" customClassName="">
@@ -209,112 +198,114 @@ const Branch = () => {
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 className=""
               >
-                <GooglePlacesAutocomplete
-                  styles={{
-                    container: {
-                      border: "2px red solid",
-                      borderColor: "green",
-                      paddingHorizontal: 20,
-                      paddingTop: 20,
-                    },
-                    textInputContainer: {
-                      height: 80,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    },
-                    textInput: {
-                      fontFamily: "PoppinsMedium",
-                      borderColor: "#D1D1D1",
-                      borderWidth: 1,
-                      borderStyle: "solid",
-                      borderRadius: 20,
-                      height: 60,
-                      paddingHorizontal: 20,
-                    },
-                    powered: { opacity: 0 },
-                    description: { fontFamily: "PoppinsRegular" },
-                  }}
-                  enablePoweredByContainer={false}
-                  isRowScrollable
-                  numberOfLines={5}
-                  onNotFound={() => (
-                    <View>
-                      <CustomText>Place not found</CustomText>
-                    </View>
-                  )}
-                  keepResultsAfterBlur
-                  predefinedPlaces={[
-                    {
-                      description: "Mobile banking branch 1",
-                      geometry: { location: { lat: 51.5074, lng: 0.1278 } },
-                    },
-                    {
-                      description: "Mobile banking branch 2",
-                      geometry: { location: { lat: 46.8182, lng: 8.2275 } },
-                    },
-
-                    {
-                      description: "mobile banking HeadQuarters",
-                      geometry: { location: { lat: 6.5244, lng: 3.3792 } },
-                    },
-
-                    {
-                      description: "Mobile banking branch 4",
-                      geometry: { location: { lat: 40.463, lng: 3.7492 } },
-                    },
-
-                    {
-                      description: "Mobile banking branch 5",
-                      geometry: {
-                        location: { lat: 55.953251, lng: -3.188267 },
+                <ScrollView>
+                  <GooglePlacesAutocomplete
+                    styles={{
+                      container: {
+                        border: "2px red solid",
+                        borderColor: "green",
+                        paddingHorizontal: 20,
+                        paddingTop: 20,
                       },
-                    },
-                  ]}
-                  placeholder="Search"
-                  renderRow={(row, index) => (
-                    <View key={index} className="flex-row items-center">
-                      <Ionicons
-                        name="location-sharp"
-                        size={25}
-                        color="#5655B9"
-                        style={{ fontWeight: "bold" }}
-                      />
-                      <CustomText customClassName="pl-4">
-                        {row?.description}
-                      </CustomText>
-                    </View>
-                  )}
-                  textInputProps={{
-                    inputMode: "search",
-                    value: autoCompleteValue,
-                    onChangeText: (text) => setAutoCompleteValue(text),
+                      textInputContainer: {
+                        height: 80,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      },
+                      textInput: {
+                        fontFamily: "PoppinsMedium",
+                        borderColor: "#D1D1D1",
+                        borderWidth: 1,
+                        borderStyle: "solid",
+                        borderRadius: 20,
+                        height: 60,
+                        paddingHorizontal: 20,
+                      },
+                      powered: { opacity: 0 },
+                      description: { fontFamily: "PoppinsRegular" },
+                    }}
+                    enablePoweredByContainer={false}
+                    isRowScrollable
+                    numberOfLines={5}
+                    onNotFound={() => (
+                      <View>
+                        <CustomText>Place not found</CustomText>
+                      </View>
+                    )}
+                    keepResultsAfterBlur
+                    predefinedPlaces={[
+                      {
+                        description: "Mobile banking branch 1",
+                        geometry: { location: { lat: 51.5074, lng: 0.1278 } },
+                      },
+                      {
+                        description: "Mobile banking branch 2",
+                        geometry: { location: { lat: 46.8182, lng: 8.2275 } },
+                      },
 
-                    // InputComp: (props: TextInputProps) => (
-                    //   <View className="w-full">
-                    //     <TextInput
-                    //       {...props}
-                    //       className="relative"
-                    //       value={autoCompleteValue}
-                    //     />
-                    //     {autoCompleteValue ? (
-                    //       <TouchableOpacity onPress={clearInput}>
-                    //         <Ionicons
-                    //           name="close-circle"
-                    //           size={20}
-                    //           color="gray"
-                    //           className="absolute"
-                    //         />
-                    //       </TouchableOpacity>
-                    //     ) : null}
-                    //   </View>
-                    // ),
-                  }}
-                  query={{
-                    key: "AIzaSyBd0vAku9eywLaQkzxlE0iwFb8aSu9OEyI",
-                    language: "en",
-                  }}
-                />
+                      {
+                        description: "mobile banking HeadQuarters",
+                        geometry: { location: { lat: 6.5244, lng: 3.3792 } },
+                      },
+
+                      {
+                        description: "Mobile banking branch 4",
+                        geometry: { location: { lat: 40.463, lng: 3.7492 } },
+                      },
+
+                      {
+                        description: "Mobile banking branch 5",
+                        geometry: {
+                          location: { lat: 55.953251, lng: -3.188267 },
+                        },
+                      },
+                    ]}
+                    placeholder="Search"
+                    renderRow={(row, index) => (
+                      <View key={index} className="flex-row items-center">
+                        <Ionicons
+                          name="location-sharp"
+                          size={25}
+                          color="#5655B9"
+                          style={{ fontWeight: "bold" }}
+                        />
+                        <CustomText customClassName="pl-4">
+                          {row?.description}
+                        </CustomText>
+                      </View>
+                    )}
+                    textInputProps={{
+                      inputMode: "search",
+                      value: autoCompleteValue,
+                      onChangeText: (text) => setAutoCompleteValue(text),
+
+                      // InputComp: (props: TextInputProps) => (
+                      //   <View className="w-full">
+                      //     <TextInput
+                      //       {...props}
+                      //       className="relative"
+                      //       value={autoCompleteValue}
+                      //     />
+                      //     {autoCompleteValue ? (
+                      //       <TouchableOpacity onPress={clearInput}>
+                      //         <Ionicons
+                      //           name="close-circle"
+                      //           size={20}
+                      //           color="gray"
+                      //           className="absolute"
+                      //         />
+                      //       </TouchableOpacity>
+                      //     ) : null}
+                      //   </View>
+                      // ),
+                    }}
+                    query={{
+                      key: "AIzaSyBd0vAku9eywLaQkzxlE0iwFb8aSu9OEyI",
+                      language: "en",
+                    }}
+                  />
+                </ScrollView>
               </KeyboardAvoidingView>
             </>
           </Modalize>

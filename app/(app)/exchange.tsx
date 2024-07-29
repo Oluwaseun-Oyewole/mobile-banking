@@ -50,174 +50,113 @@ const Exchange = () => {
 
   return (
     <MainWrapper backgroundColor="#fff">
-      <View className="pt-5">
-        <View className="h-[200px]">
-          <Image
-            className="w-full h-full"
-            placeholder="illustration icon"
-            contentFit="cover"
-            transition={1000}
-            source={require("@/assets/images/exchanges.svg")}
-          />
-        </View>
-        <View className="py-10">
-          <Formik
-            initialValues={{
-              from: "",
-              to: "",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-            validateOnMount
-          >
-            {(formik) => {
-              return (
-                <>
-                  <CustomInput
-                    placeholder="Amount"
-                    onChangeText={formik.handleChange("from")}
-                    onBlur={formik.handleBlur("from")}
-                    value={formik.values.from}
-                    name="from"
-                    arialLabel="Label for from"
-                    arialLabelBy="From"
-                    showLabel
-                    showExchangeRate
-                    openModal={() => fromCurrencyRef?.current?.open()}
-                    currencyType={fromCurrency}
-                  />
-
-                  <View className="flex-row items-center justify-center pt-5">
-                    <Ionicons name="arrow-down" size={30} color="#444444" />
-                    <Ionicons name="arrow-up" size={30} color="#FF4267" />
-                  </View>
-
-                  <View>
+      <View className="mt-5">
+        <View className="pt-5">
+          <View className="h-[200px]">
+            <Image
+              className="w-full h-full"
+              placeholder="illustration icon"
+              contentFit="cover"
+              transition={1000}
+              source={require("@/assets/images/exchanges.svg")}
+            />
+          </View>
+          <View className="py-10">
+            <Formik
+              initialValues={{
+                from: "",
+                to: "",
+              }}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+              validateOnMount
+            >
+              {(formik) => {
+                return (
+                  <>
                     <CustomInput
                       placeholder="Amount"
-                      onChangeText={formik.handleChange("to")}
-                      onBlur={formik.handleBlur("to")}
-                      value={formik.values.to}
-                      name="to"
-                      arialLabel="Label for to"
-                      arialLabelBy="To"
+                      onChangeText={formik.handleChange("from")}
+                      onBlur={formik.handleBlur("from")}
+                      value={formik.values.from}
+                      name="from"
+                      arialLabel="Label for from"
+                      arialLabelBy="From"
                       showLabel
                       showExchangeRate
-                      openModal={() => toCurrencyRef?.current?.open()}
-                      currencyType={toCurrency}
+                      openModal={() => fromCurrencyRef?.current?.open()}
+                      currencyType={fromCurrency}
                     />
-                  </View>
 
-                  <View className="pt-10">
-                    <CustomButton
-                      buttonText="Exchange"
-                      isLoading={formik.isSubmitting}
-                      disabled={!formik.isValid}
-                      onPress={formik.handleSubmit}
-                    />
-                  </View>
-                </>
-              );
-            }}
-          </Formik>
-        </View>
-      </View>
-
-      <Modalize
-        ref={fromCurrencyRef}
-        withReactModal
-        withHandle={false}
-        velocity={0.5}
-        modalHeight={600}
-      >
-        <Pressable onPress={() => fromCurrencyRef?.current?.close()}>
-          <View className="justify-end items-end py-4 px-8">
-            <Ionicons name="close-circle-outline" size={30} />
-          </View>
-          <View className="px-8">
-            <CustomText customClassName="text-[15px]" fontFamily="PoppinsBold">
-              Select the currency
-            </CustomText>
-            <View className="pb-5 pt-2">
-              {fromAllCurrencies?.map((currency, index) => {
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    className="text-neutral2 text-lg flex-row items-center py-3 justify-between"
-                    onPress={() => {
-                      changeFromCurrencyType(`${currency.currencyCode!}`);
-                      selectCurrency(index);
-                    }}
-                  >
-                    <View className="flex-row">
-                      <CustomText
-                        customClassName={classNames("", {
-                          "text-primary":
-                            fromCurrency === currency.currencyCode,
-                        })}
-                      >
-                        {currency?.currencyCode}
-                      </CustomText>
-                      <CustomText
-                        customClassName={classNames("pl-2", {
-                          "text-primary":
-                            fromCurrency === currency.currencyCode,
-                        })}
-                      >
-                        {`(${currency?.currency})`}
-                      </CustomText>
+                    <View className="flex-row items-center justify-center pt-5">
+                      <Ionicons name="arrow-down" size={30} color="#444444" />
+                      <Ionicons name="arrow-up" size={30} color="#FF4267" />
                     </View>
 
-                    {currency.isSelected && (
-                      <Ionicons name="checkmark" size={20} color="#3629B7" />
-                    )}
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </View>
-        </Pressable>
-      </Modalize>
+                    <View>
+                      <CustomInput
+                        placeholder="Amount"
+                        onChangeText={formik.handleChange("to")}
+                        onBlur={formik.handleBlur("to")}
+                        value={formik.values.to}
+                        name="to"
+                        arialLabel="Label for to"
+                        arialLabelBy="To"
+                        showLabel
+                        showExchangeRate
+                        openModal={() => toCurrencyRef?.current?.open()}
+                        currencyType={toCurrency}
+                      />
+                    </View>
 
-      <Modalize
-        ref={toCurrencyRef}
-        withReactModal
-        withHandle={false}
-        velocity={0.5}
-        modalHeight={600}
-      >
-        <Pressable onPress={() => toCurrencyRef?.current?.close()}>
-          <View className="justify-end items-end py-4 px-8">
-            <Ionicons name="close-circle-outline" size={30} />
+                    <View className="pt-10">
+                      <CustomButton
+                        buttonText="Exchange"
+                        isLoading={formik.isSubmitting}
+                        disabled={!formik.isValid}
+                        onPress={formik.handleSubmit}
+                      />
+                    </View>
+                  </>
+                );
+              }}
+            </Formik>
           </View>
-          <View className="px-8">
-            <CustomText customClassName="text-[15px]" fontFamily="PoppinsBold">
-              Select (to) currency
-            </CustomText>
-            <View className="pt-2 pb-5">
-              {toAllCurrencies?.map((currency, index) => {
-                return (
-                  <View
-                    key={index}
-                    className="text-neutral2 text-lg flex-row items-center"
-                  >
+        </View>
+        <Modalize
+          ref={fromCurrencyRef}
+          withReactModal
+          withHandle={false}
+          velocity={0.5}
+          modalHeight={600}
+        >
+          <Pressable onPress={() => fromCurrencyRef?.current?.close()}>
+            <View className="justify-end items-end py-4 px-8">
+              <Ionicons name="close-circle-outline" size={30} />
+            </View>
+            <View className="px-8">
+              <CustomText
+                customClassName="text-[16px]"
+                fontFamily="PoppinsMedium"
+              >
+                Select the currency
+              </CustomText>
+              <View className="pb-5 pt-2">
+                {fromAllCurrencies?.map((currency, index) => {
+                  return (
                     <TouchableOpacity
+                      key={index}
+                      className="text-neutral2 text-lg flex-row items-center py-3 justify-between"
                       onPress={() => {
-                        changeToCurrencyType(`${currency?.currencyCode}`);
-                        selectToCurrency(index);
+                        changeFromCurrencyType(`${currency.currencyCode!}`);
+                        selectCurrency(index);
                       }}
-                      className={classNames(
-                        "flex-row justify-between items-center py-3",
-                        {
-                          "bg-gray-100 w-full": currency.isSelected,
-                        }
-                      )}
                     >
                       <View className="flex-row">
                         <CustomText
                           customClassName={classNames("", {
                             "text-primary":
-                              toCurrency === currency.currencyCode,
+                              fromCurrency === currency.currencyCode,
                           })}
                         >
                           {currency?.currencyCode}
@@ -225,23 +164,94 @@ const Exchange = () => {
                         <CustomText
                           customClassName={classNames("pl-2", {
                             "text-primary":
-                              toCurrency === currency.currencyCode,
+                              fromCurrency === currency.currencyCode,
                           })}
                         >
                           {`(${currency?.currency})`}
                         </CustomText>
                       </View>
+
                       {currency.isSelected && (
                         <Ionicons name="checkmark" size={20} color="#3629B7" />
                       )}
                     </TouchableOpacity>
-                  </View>
-                );
-              })}
+                  );
+                })}
+              </View>
             </View>
-          </View>
-        </Pressable>
-      </Modalize>
+          </Pressable>
+        </Modalize>
+        <Modalize
+          ref={toCurrencyRef}
+          withReactModal
+          withHandle={false}
+          velocity={0.5}
+          modalHeight={600}
+        >
+          <Pressable onPress={() => toCurrencyRef?.current?.close()}>
+            <View className="justify-end items-end py-4 px-8">
+              <Ionicons name="close-circle-outline" size={30} />
+            </View>
+            <View className="px-8">
+              <CustomText
+                customClassName="text-[15px]"
+                fontFamily="PoppinsBold"
+              >
+                Select (to) currency
+              </CustomText>
+              <View className="pt-2 pb-5">
+                {toAllCurrencies?.map((currency, index) => {
+                  return (
+                    <View
+                      key={index}
+                      className="text-neutral2 text-lg flex-row items-center"
+                    >
+                      <TouchableOpacity
+                        onPress={() => {
+                          changeToCurrencyType(`${currency?.currencyCode}`);
+                          selectToCurrency(index);
+                        }}
+                        className={classNames(
+                          "flex-row justify-between items-center py-3",
+                          {
+                            "bg-gray-100 w-full": currency.isSelected,
+                          }
+                        )}
+                      >
+                        <View className="flex-row">
+                          <CustomText
+                            customClassName={classNames("", {
+                              "text-primary":
+                                toCurrency === currency.currencyCode,
+                            })}
+                          >
+                            {currency?.currencyCode}
+                          </CustomText>
+                          <CustomText
+                            customClassName={classNames("pl-2", {
+                              "text-primary":
+                                toCurrency === currency.currencyCode,
+                            })}
+                          >
+                            {`(${currency?.currency})`}
+                          </CustomText>
+                        </View>
+                        {currency.isSelected && (
+                          <Ionicons
+                            name="checkmark"
+                            size={20}
+                            color="#3629B7"
+                          />
+                        )}
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
+          </Pressable>
+        </Modalize>
+      </View>
     </MainWrapper>
   );
 };

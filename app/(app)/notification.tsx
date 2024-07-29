@@ -13,6 +13,7 @@ const Notification = () => {
         {notification?.map((not, index) => {
           return (
             <View
+              key={index}
               className="w-full flex-row items-center justify-between px-3 h-[90px] rounded-lg bg-primary4"
               style={styles.card}
             >
