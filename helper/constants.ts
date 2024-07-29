@@ -389,10 +389,26 @@ export const app_information = [
 ];
 
 export const notification = [
-  { title: "Withdrawal", details: "Short details about withdrawal" },
-  { title: "Savings", details: "Short details about savings" },
-  { title: "Discount", details: "Short details about discount" },
-  { title: "Complaint", details: "Short details about complaint resolved" },
+  {
+    title: "Withdrawal",
+    details: "Short details about withdrawal",
+    date: "2024-10-05",
+  },
+  {
+    title: "Savings",
+    details: "Short details about savings",
+    date: "2024-08-10",
+  },
+  {
+    title: "Discount",
+    details: "Short details about discount",
+    date: "2024-03-06",
+  },
+  {
+    title: "Complaint",
+    details: "Short details about complaint resolved",
+    date: "2024-04-20",
+  },
 ];
 
 export type CurrencyType = {

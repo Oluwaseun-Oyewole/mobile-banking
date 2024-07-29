@@ -16,27 +16,24 @@ const Search = () => {
             <TouchableOpacity
               key={index}
               onPress={() => push(cards?.link)}
-              className="w-full flex-row justify-between px-4 items-center h-[120px] rounded-2xl bg-primary4"
+              className="w-full flex-row justify-between items-center px-4 h-[120px] bg-primary4"
               style={styles.card}
             >
               <View>
-                <CustomText
-                  customClassName="text-lg"
-                  fontFamily="PoppinsMedium"
-                >
+                <CustomText customClassName="text-lg" fontFamily="PoppinsBold">
                   {cards?.title}
                 </CustomText>
                 <CustomText
-                  customClassName="text-xs pt-[5px] text-neutral2"
+                  customClassName="text-xs pt-[5px]"
                   fontFamily="PoppinsMedium"
                 >
                   {cards?.description}
                 </CustomText>
               </View>
 
-              <View className="h-[75px]">
+              <View className="h-[80px]">
                 <Image
-                  className="w-[75px] h-full"
+                  className="w-[80px] h-full"
                   placeholder="illustration icon"
                   contentFit="cover"
                   transition={1000}
@@ -57,9 +54,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
-    paddingVertical: 8,
-    shadowColor: "#333",
-    elevation: 2.9,
+    // paddingVertical: 14,
+    shadowColor: "#000",
+    elevation: 2,
     marginBottom: 20,
     backgroundColor: "#fff",
   },

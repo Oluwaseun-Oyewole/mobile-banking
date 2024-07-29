@@ -14,7 +14,7 @@ const Messages = () => {
           return (
             <View
               key={index}
-              className="w-full flex-row items-center justify-between px-3 h-[100px] rounded-2xl bg-primary4"
+              className="w-full flex-row items-center justify-between px-3 h-[100px] bg-primary4"
               style={styles.card}
             >
               <View className="flex-row items-center gap-4">

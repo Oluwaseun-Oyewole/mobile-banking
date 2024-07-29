@@ -4,7 +4,7 @@ import { notification } from "@/helper/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const Notification = () => {
   return (
@@ -13,12 +13,19 @@ const Notification = () => {
         {notification?.map((not, index) => {
           return (
             <View
-              className="bg-gray-50 w-full px-3 py-4 rounded-lg flex-row justify-between mt-3"
-              key={index}
+              className="w-full flex-row items-center justify-between px-3 h-[90px] rounded-lg bg-primary4"
+              style={styles.card}
             >
-              <View className="flex-row items-center">
-                <Ionicons name="notifications" color="#3629B7" size={25} />
-                <CustomText customClassName="pl-2">{not.title}</CustomText>
+              <View className="flex-row items-center gap-2">
+                <Ionicons name="notifications" color="#000" size={25} />
+                <View>
+                  <CustomText customClassName="" fontFamily="PoppinsMedium">
+                    {not.title}
+                  </CustomText>
+                  <CustomText customClassName="text-xs pt-1">
+                    {not.details}
+                  </CustomText>
+                </View>
               </View>
               <TouchableOpacity>
                 <Link
@@ -37,5 +44,18 @@ const Notification = () => {
     </MainWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    paddingVertical: 8,
+    shadowColor: "#000",
+    elevation: 2,
+    marginBottom: 20,
+    backgroundColor: "#fff",
+  },
+});
 
 export default Notification;
