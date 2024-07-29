@@ -75,4 +75,5 @@ export const subRoutes = [
     routeTitle: "withdrawal",
   },
   { routeTitle: "payment_history" },
+  { routeTitle: "electric_bill" },
 ];

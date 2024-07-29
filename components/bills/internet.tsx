@@ -2,7 +2,7 @@ import { CustomText } from "@/components/text";
 import { formatCurrency } from "@/helper";
 import classNames from "classnames";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const electricArray = [
   {
@@ -54,7 +54,7 @@ const Internet = () => {
     <View className="mt-4">
       {electricArray?.map((electric, index) => {
         return (
-          <View key={index} style={styles.card}>
+          <TouchableOpacity key={index} style={styles.card}>
             <View className="flex-row items-center justify-between">
               <CustomText fontFamily="PoppinsMedium">
                 {electric.month}
@@ -95,7 +95,7 @@ const Internet = () => {
                 {electric.company}
               </CustomText>
             </View>
-          </View>
+          </TouchableOpacity>
         );
       })}
     </View>
@@ -106,11 +106,14 @@ export default Internet;
 
 const styles = StyleSheet.create({
   card: {
+    backgroundColor: "#fff",
     borderRadius: 15,
-    shadowColor: "#3629B7",
-    borderWidth: 0.4,
-    borderColor: "#3629B7",
-    paddingVertical: 14,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    paddingVertical: 8,
+    shadowColor: "#333",
+    elevation: 5,
     paddingHorizontal: 15,
     marginTop: 25,
   },

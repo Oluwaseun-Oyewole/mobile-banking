@@ -4,17 +4,18 @@ import { truncate } from "@/helper";
 import { messages } from "@/helper/constants";
 import { Image } from "expo-image";
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const Messages = () => {
   return (
     <MainWrapper backgroundColor="#fff">
-      <View className="w-full gap-4 pt-4">
+      <View className="w-full gap-4">
         {messages?.map((message, index) => {
           return (
             <View
               key={index}
               className="w-full flex-row items-center justify-between px-3 h-[100px] rounded-2xl bg-primary4"
+              style={styles.card}
             >
               <View className="flex-row items-center gap-4">
                 <View className="h-[40px]">
@@ -53,5 +54,19 @@ const Messages = () => {
     </MainWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    borderRadius: 10,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    paddingVertical: 8,
+    shadowColor: "#000",
+    elevation: 2,
+    marginBottom: 5,
+    backgroundColor: "#fff",
+  },
+});
 
 export default Messages;

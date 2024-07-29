@@ -32,6 +32,7 @@ export const MainScreensTitle: Record<string, string> = {
   mobile_confirm: "Mobile Confirm",
   pay_bills: "Pay the bill",
   payment_history: "Payment History",
+  electric_bill: "Electric payment",
 };
 
 export const HomeCardArrays = [
@@ -127,7 +128,7 @@ export const payBillsArrays = [
     title: "Electric bill",
     description: "Pay electric bill this month",
     imagePath: require("@/assets/images/eletric.svg"),
-    link: Routes.branch,
+    link: Routes.electric_bill,
   },
 
   {
