@@ -106,7 +106,7 @@ const Branch = () => {
 
   return (
     <GestureHandlerRootView>
-      <StatusBar hidden />
+      <StatusBar />
       <View className="flex-1 bg-white relative">
         {errorMsg ? (
           <CustomText>{errorMsg}</CustomText>

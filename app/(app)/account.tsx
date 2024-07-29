@@ -41,8 +41,11 @@ const Account = () => {
                   customClassName={`${
                     currentIndex === tab.index
                       ? "bg-primary"
-                      : "bg-gray-400 text-black"
+                      : "bg-[#F2F1F9] text-black"
                   }`}
+                  textClassName={
+                    currentIndex === tab.index ? "text-white" : "text-black"
+                  }
                 />
               </TouchableOpacity>
             </View>

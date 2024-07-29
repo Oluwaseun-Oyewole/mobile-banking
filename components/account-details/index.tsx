@@ -6,7 +6,6 @@ import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 
 const width = Dimensions.get("window").width;
-
 export const AccountComponent = () => {
   return (
     <View>
@@ -21,7 +20,8 @@ export const AccountComponent = () => {
           />
         </View>
         <CustomText
-          customClassName="pt-6 text-primary"
+          customClassName="pt-6 
+          "
           fontFamily="PoppinsBold"
         >
           Dolapo Popola
@@ -35,7 +35,10 @@ export const AccountComponent = () => {
             style={styles.account_cards}
           >
             <View className="flex-row justify-between items-center">
-              <CustomText customClassName="text-[17px]">
+              <CustomText
+                customClassName="text-[17px]"
+                fontFamily="PoppinsBold"
+              >
                 {account.title}
               </CustomText>
               <CustomText customClassName="text-[15px]">
@@ -44,19 +47,13 @@ export const AccountComponent = () => {
             </View>
 
             <View className="flex-row justify-between items-center py-2">
-              <CustomText customClassName="text-gray-500">
-                Available balance
-              </CustomText>
-              <CustomText customClassName="text-primary">
-                {formatCurrency(account.balance)}
-              </CustomText>
+              <CustomText>Available balance</CustomText>
+              <CustomText>{formatCurrency(account.balance)}</CustomText>
             </View>
 
             <View className="flex-row justify-between items-center">
-              <CustomText customClassName="text-gray-500">Branch</CustomText>
-              <CustomText customClassName="text-primary">
-                {account.branch}
-              </CustomText>
+              <CustomText>Branch</CustomText>
+              <CustomText>{account.branch}</CustomText>
             </View>
           </View>
         );
@@ -69,9 +66,17 @@ const styles = StyleSheet.create({
   card: {
     width: width * 0.8,
   },
+
   account_cards: {
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "#cccccc",
+    borderRadius: 10,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    paddingVertical: 8,
+    shadowColor: "#000",
+    elevation: 3,
+    paddingHorizontal: 15,
+    marginBottom: 25,
+    backgroundColor: "#fff",
   },
 });

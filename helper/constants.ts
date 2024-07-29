@@ -132,13 +132,6 @@ export const payBillsArrays = [
   },
 
   {
-    title: "Water bill",
-    description: "Pay water bill this month",
-    imagePath: require("@/assets/images/water_bill.svg"),
-    link: Routes.interest,
-  },
-
-  {
     title: "Mobile bill",
     description: "Pay mobile this month",
     imagePath: require("@/assets/images/mobile_bill.svg"),
