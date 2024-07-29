@@ -31,6 +31,7 @@ export const MainScreensTitle: Record<string, string> = {
   mobile_prepaid: "Mobile Prepaid",
   mobile_confirm: "Mobile Confirm",
   pay_bills: "Pay the bill",
+  payment_history: "Payment History",
 };
 
 export const HomeCardArrays = [
@@ -119,7 +120,7 @@ export const payBillsArrays = [
     title: "Payment History",
     description: "All previous payments",
     imagePath: require("@/assets/images/internet copy.svg"),
-    link: Routes.branch,
+    link: Routes.payment_history,
   },
 
   {

@@ -29,4 +29,5 @@ export const enum Routes {
   mobile_prepaid = "mobile_prepaid",
   mobile_confirm = "mobile_confirm",
   mobile_prepaid_success = "mobile_prepaid_success",
+  payment_history = "payment_history",
 }
