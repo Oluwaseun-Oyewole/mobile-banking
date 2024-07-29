@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React from "react";
 import { Flow } from "react-native-animated-spinkit";
 import CustomPressable from "../pressible";
@@ -8,6 +9,7 @@ type ICustomButtonProps = {
   buttonText: string;
   disabled?: boolean;
   customClassName?: string;
+  textClassName?: string;
   onPress?: () => void;
 };
 const CustomButton = ({
@@ -15,6 +17,7 @@ const CustomButton = ({
   buttonText,
   disabled,
   customClassName,
+  textClassName,
   onPress,
   ...rest
 }: ICustomButtonProps) => {
@@ -29,7 +32,7 @@ const CustomButton = ({
         <Flow color="white" size={50} />
       ) : (
         <CustomText
-          customClassName="text-center text-white"
+          customClassName={classNames("text-center text-white", textClassName)}
           fontFamily="PoppinsMedium"
         >
           {buttonText}

@@ -1,11 +1,10 @@
 import Electric from "@/components/bills/electric";
+import Internet from "@/components/bills/internet";
 import CustomButton from "@/components/button";
 import MainWrapper from "@/components/main/wrapper";
 import React, { useState } from "react";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
+import { FlatList, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
-const width = Dimensions.get("window").width;
 
 const PaymentHistory = () => {
   const tabs = [
@@ -13,25 +12,21 @@ const PaymentHistory = () => {
       title: "Electric",
       index: 0,
       component: <Electric />,
-      styles: { bg: "#3629B7" },
     },
     {
       title: "Water",
       index: 1,
-      component: <Electric />,
-      styles: { bg: "#F2F1F9", color: "#000" },
+      component: <Internet />,
     },
     {
       title: "Mobile",
       index: 2,
       component: <Electric />,
-      styles: { bg: "#F2F1F9", color: "#000" },
     },
     {
       title: "Internet",
       index: 3,
-      component: <Electric />,
-      styles: { bg: "#F2F1F9", color: "#000" },
+      component: <Internet />,
     },
   ];
 
@@ -45,7 +40,6 @@ const PaymentHistory = () => {
           contentContainerStyle={{
             alignItems: "center",
             justifyContent: "center",
-            // width: Dimensions.get("window").width,
           }}
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -68,8 +62,11 @@ const PaymentHistory = () => {
                     customClassName={`${
                       currentIndex === item.index
                         ? "bg-primary"
-                        : "bg-gray-400 text-black"
+                        : "bg-[#F2F1F9] text-black"
                     }`}
+                    textClassName={
+                      currentIndex === item.index ? "text-white" : "text-black"
+                    }
                   />
                 </TouchableOpacity>
               </View>
@@ -83,5 +80,4 @@ const PaymentHistory = () => {
   );
 };
 
-const styles = StyleSheet.create({});
 export default PaymentHistory;

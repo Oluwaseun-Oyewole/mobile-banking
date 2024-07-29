@@ -33,13 +33,6 @@ const electricArray = [
   },
 
   {
-    month: "September",
-    date: "5|06|2021",
-    status: "Unsuccessful",
-    amount: 500,
-  },
-
-  {
     month: "August",
     date: "30|12|2022",
     status: "Successful",
@@ -59,22 +52,16 @@ const Electric = () => {
         return (
           <View key={index} style={styles.card}>
             <View className="flex-row items-center justify-between mt-4">
-              <CustomText
-                customClassName="text-gray-500"
-                fontFamily="PoppinsMedium"
-              >
+              <CustomText fontFamily="PoppinsMedium">
                 {electric.month}
               </CustomText>
-              <CustomText
-                customClassName="text-gray-500"
-                fontFamily="PoppinsMedium"
-              >
+              <CustomText fontFamily="PoppinsMedium">
                 {electric.date}
               </CustomText>
             </View>
             <View className="flex-row justify-between items-center py-4">
               <View className="flex-row items-center justify-between">
-                <CustomText customClassName="text-gray-500">Status</CustomText>
+                <CustomText>Status</CustomText>
                 <CustomText
                   customClassName={classNames(
                     "pl-2 text-xs",
@@ -86,9 +73,9 @@ const Electric = () => {
                 </CustomText>
               </View>
               <View className="flex-row items-center justify-between">
-                <CustomText customClassName="text-gray-500">Amount</CustomText>
+                <CustomText>Amount :</CustomText>
                 <CustomText
-                  customClassName="pl-2 text-primary"
+                  customClassName="pl-1 text-primary"
                   fontFamily="PoppinsMedium"
                 >
                   {formatCurrency(electric.amount)}
@@ -107,9 +94,9 @@ export default Electric;
 const styles = StyleSheet.create({
   card: {
     borderRadius: 15,
-    borderWidth: 0.6,
-    borderColor: "#b9b9b9",
-    paddingVertical: 12,
+    borderWidth: 0.4,
+    borderColor: "#3629B7",
+    paddingVertical: 8,
     paddingHorizontal: 15,
     marginTop: 25,
   },
